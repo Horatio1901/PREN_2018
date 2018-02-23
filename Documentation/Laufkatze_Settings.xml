@@ -111,10 +111,10 @@ PE_DEBUGHALT();
       </boolgroup>
     </CompilerProperties>
   </CPU_Bean>
-  <Bean name="RNG1" type="RingBuffer">
+  <Bean name="RxBuf" type="RingBuffer">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="RNG1" />
+      <Component_name v="RxBuf" />
       <SDK v="MCUC1" />
       <Reentrant v="yes" />
       <Critical_Section v="CS1" />

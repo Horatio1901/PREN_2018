@@ -33,7 +33,7 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-#include "RNG1.h"
+#include "RxBuf.h"
 #include "MCUC1.h"
 #include "CS1.h"
 #include "AS1.h"

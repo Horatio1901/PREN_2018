@@ -3,7 +3,7 @@
   <Header>
     <Name>Laufkatze</Name>
     <SavedBy>mario</SavedBy>
-    <ModificationStamp>3</ModificationStamp>
+    <ModificationStamp>4</ModificationStamp>
     <Date>2018-02-16</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.2.RT7_b1550-0615</PEversion>
@@ -4534,7 +4534,7 @@
   <Bean>
     <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>RingBuffer</BeanType>
-    <Name>RNG1</Name>
+    <Name>RxBuf</Name>
     <CompNumb>3</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -4549,7 +4549,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>RNG1</Value>
+        <Value>RxBuf</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -4775,7 +4775,7 @@
         <ItemSymbol>OnBufferFullName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>RNG1_OnBufferFull</Value>
+        <Value>RxBuf_OnBufferFull</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -4793,7 +4793,7 @@
         <ItemSymbol>OnBufferEmptyName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>RNG1_OnBufferEmpty</Value>
+        <Value>RxBuf_OnBufferEmpty</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -4811,7 +4811,7 @@
         <ItemSymbol>OnItemPutName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>RNG1_OnItemPut</Value>
+        <Value>RxBuf_OnItemPut</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -4829,7 +4829,7 @@
         <ItemSymbol>OnItemGetName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>RNG1_OnItemGet</Value>
+        <Value>RxBuf_OnItemGet</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -4847,7 +4847,7 @@
         <ItemSymbol>OnClearName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>RNG1_OnClear</Value>
+        <Value>RxBuf_OnClear</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
     </Events>

@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : KL25P80M48SF0RM, Rev.3, Sep 2012
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-02-23, 11:27, # CodeGen: 1
+**     Date/Time   : 2018-02-23, 11:36, # CodeGen: 3
 **     Abstract    :
 **
 **     Settings    :
@@ -243,7 +243,7 @@
 /* MODULE Cpu. */
 
 /* {Default RTOS Adapter} No RTOS includes */
-#include "RNG1.h"
+#include "RxBuf.h"
 #include "MCUC1.h"
 #include "CS1.h"
 #include "AS1.h"
@@ -425,8 +425,8 @@ void PE_low_level_init(void)
   NVIC_IPR1 &= (uint32_t)~(uint32_t)(NVIC_IP_PRI_6(0xFF));
   /* ### McuLibConfig "MCUC1" init code ... */
   /* ### CriticalSection "CS1" init code ... */
-  /* ### RingBuffer "RNG1" init code ... */
-  RNG1_Init();
+  /* ### RingBuffer "RxBuf" init code ... */
+  RxBuf_Init();
   __EI();
 }
   /* Flash configuration field */

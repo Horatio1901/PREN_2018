@@ -6,7 +6,7 @@
 **     Version     : Component 01.025, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-02-23, 11:27, # CodeGen: 1
+**     Date/Time   : 2018-02-23, 11:36, # CodeGen: 3
 **     Abstract    :
 **
 **     Settings    :
@@ -55,7 +55,7 @@
 */         
 
   #include "Cpu.h"
-  #include "RNG1.h"
+  #include "RxBuf.h"
   #include "MCUC1.h"
   #include "CS1.h"
   #include "AS1.h"

@@ -35,6 +35,7 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "Application.h"
 
 /*
 ** ===================================================================
@@ -72,7 +73,10 @@ void Cpu_OnNMIINT(void)
 /* ===================================================================*/
 void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr)
 {
-  /* Write your code here ... */
+	UART_Desc *ptr = (UART_Desc*)UserDataPtr;
+
+	  (void)ptr->rxPutFct(ptr->rxChar); /* but received character into buffer */
+	  (void)AS1_ReceiveBlock(ptr->handle, (LDD_TData *)&ptr->rxChar, sizeof(ptr->rxChar));
 }
 
 /*
@@ -93,7 +97,9 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr)
 /* ===================================================================*/
 void AS1_OnBlockSent(LDD_TUserData *UserDataPtr)
 {
-  /* Write your code here ... */
+	UART_Desc *ptr = (UART_Desc*)UserDataPtr;
+
+	  ptr->isSent = TRUE; /* set flag so sender knows we have finished */
 }
 
 /* END Events */

@@ -34,7 +34,7 @@
       <GenExtraFiles lines_count="13">
         <Line>Generated_Code\MCUC1config.h</Line>
         <Line>Generated_Code\CS1config.h</Line>
-        <Line>Generated_Code\RNG1config.h</Line>
+        <Line>Generated_Code\RxBufconfig.h</Line>
         <Line>Documentation\doxygen\AS1_component.txt</Line>
         <Line>Documentation\doxygen\Laufkatze_project.txt</Line>
         <Line>Documentation\doxygen\RoutingReport_component.txt</Line>
@@ -50,11 +50,11 @@
       <GenExtraFileSrcDir7>Repositories\lib\doxygen\</GenExtraFileSrcDir7>
       <XtraAge0>1280793473</XtraAge0>
       <XtraAge1>1280793473</XtraAge1>
-      <XtraAge2>1280793473</XtraAge2>
+      <XtraAge2>1280793734</XtraAge2>
       <XtraAge8>1280793473</XtraAge8>
-      <XtraAge9>1280793473</XtraAge9>
+      <XtraAge9>1280793734</XtraAge9>
       <XtraAge11>1280336697</XtraAge11>
-      <XtraAge12>1280793473</XtraAge12>
+      <XtraAge12>1280793734</XtraAge12>
       <GenExtraFileType12>4</GenExtraFileType12>
       <GenExtraFileType11>5</GenExtraFileType11>
       <GenExtraFileType10>4</GenExtraFileType10>
@@ -321,11 +321,11 @@
         <Line>PE_Const</Line>
         <Line>PE_Error</Line>
         <Line>PE_Types</Line>
-        <Line>RNG1</Line>
+        <Line>RxBuf</Line>
       </GenAllModules>
       <GenExternModules lines_count="0" />
       <GenBeanModules lines_count="4">
-        <Line>RNG1</Line>
+        <Line>RxBuf</Line>
         <Line>MCUC1</Line>
         <Line>CS1</Line>
         <Line>AS1</Line>
@@ -333,7 +333,7 @@
     </GenFiles>
     <SignalListFile>Documentation\Laufkatze_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>3</ProjectModificationStamp>
+    <ProjectModificationStamp>4</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -342,7 +342,7 @@
     <GenDriverVersion>01.04</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
     <HeaderAge>1280336698</HeaderAge>
-    <CodeAge>1280793473</CodeAge>
+    <CodeAge>1280793734</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>11</GenNumMethods>
     <SetClockConfiguration>false</SetClockConfiguration>
@@ -417,12 +417,12 @@
   </CpuID_2>
   <ComponentID_3>
     <Generated>true</Generated>
-    <GenCompName>RNG1</GenCompName>
+    <GenCompName>RxBuf</GenCompName>
     <GenComponentVersion>01.051</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1280793473</HeaderAge>
-    <CodeAge>1280793473</CodeAge>
+    <HeaderAge>1280793734</HeaderAge>
+    <CodeAge>1280793734</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Clear>true</Clear>
@@ -440,19 +440,19 @@
     <Init>true</Init>
     <GenNumEvents>5</GenNumEvents>
     <OnBufferFull_Selected>1</OnBufferFull_Selected>
-    <OnBufferFull_Name>RNG1_OnBufferFull</OnBufferFull_Name>
+    <OnBufferFull_Name>RxBuf_OnBufferFull</OnBufferFull_Name>
     <OnBufferFull_Priority>interrupts disabled</OnBufferFull_Priority>
     <OnBufferEmpty_Selected>1</OnBufferEmpty_Selected>
-    <OnBufferEmpty_Name>RNG1_OnBufferEmpty</OnBufferEmpty_Name>
+    <OnBufferEmpty_Name>RxBuf_OnBufferEmpty</OnBufferEmpty_Name>
     <OnBufferEmpty_Priority>interrupts disabled</OnBufferEmpty_Priority>
     <OnItemPut_Selected>1</OnItemPut_Selected>
-    <OnItemPut_Name>RNG1_OnItemPut</OnItemPut_Name>
+    <OnItemPut_Name>RxBuf_OnItemPut</OnItemPut_Name>
     <OnItemPut_Priority>interrupts disabled</OnItemPut_Priority>
     <OnItemGet_Selected>1</OnItemGet_Selected>
-    <OnItemGet_Name>RNG1_OnItemGet</OnItemGet_Name>
+    <OnItemGet_Name>RxBuf_OnItemGet</OnItemGet_Name>
     <OnItemGet_Priority>interrupts disabled</OnItemGet_Priority>
     <OnClear_Selected>1</OnClear_Selected>
-    <OnClear_Name>RNG1_OnClear</OnClear_Name>
+    <OnClear_Name>RxBuf_OnClear</OnClear_Name>
     <OnClear_Priority>interrupts disabled</OnClear_Priority>
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
@@ -641,7 +641,7 @@
       <LineEnd>423</LineEnd>
     </MethodPos>
     <GenExtraFilesCount>1</GenExtraFilesCount>
-    <ExtraFile0>Generated_Code\RNG1config.h</ExtraFile0>
+    <ExtraFile0>Generated_Code\RxBufconfig.h</ExtraFile0>
   </ComponentID_3>
   <ComponentID_4>
     <Generated>true</Generated>
