@@ -6,7 +6,7 @@
 **     Version     : Component 01.025, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-02-16, 12:25, # CodeGen: 0
+**     Date/Time   : 2018-02-23, 11:27, # CodeGen: 1
 **     Abstract    :
 **
 **     Settings    :
@@ -61,6 +61,10 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
+#include "RNG1.h"
+#include "MCUC1.h"
+#include "CS1.h"
+#include "AS1.h"
 
 
 /*
