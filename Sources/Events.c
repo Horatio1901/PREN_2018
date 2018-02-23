@@ -77,6 +77,7 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr)
 
 	  (void)ptr->rxPutFct(ptr->rxChar); /* but received character into buffer */
 	  (void)AS1_ReceiveBlock(ptr->handle, (LDD_TData *)&ptr->rxChar, sizeof(ptr->rxChar));
+	  LED1_Neg();
 }
 
 /*

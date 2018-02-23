@@ -43,7 +43,7 @@ by the component.
 <td class="regNotResetVal">0x00000000</td>
  <td>UART0_C4 register, peripheral AS1.</td></tr>
 <tr><td>0x4006A005</td><td>UART0_S2</td>
-<td class="regResetVal">0x00000000</td>
+<td class="regNotResetVal">0x00000010</td>
  <td>UART0_S2 register, peripheral AS1.</td></tr>
 </table>
 Color Denotes Reset Value
@@ -429,13 +429,13 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4006A005</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000010</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>7</td><td>LBKDIF</td><td>0x00</td><td>LIN Break Detect Interrupt Flag</td>
 <tr><td>6</td><td>RXEDGIF</td><td>0x00</td><td>UART _RX Pin Active Edge Interrupt Flag</td>
 <tr><td>5</td><td>MSBF</td><td>0x00</td><td>MSB First</td>
-<tr><td>4</td><td>RXINV</td><td>0x00</td><td>Receive Data Inversion</td>
+<tr><td>4</td><td>RXINV</td><td>0x01</td><td>Receive Data Inversion</td>
 <tr><td>3</td><td>RWUID</td><td>0x00</td><td>Receive Wake Up Idle Detect</td>
 <tr><td>2</td><td>BRK13</td><td>0x00</td><td>Break Character Generation Length</td>
 <tr><td>1</td><td>LBKDE</td><td>0x00</td><td>LIN Break Detection Enable</td>
@@ -459,12 +459,12 @@ registers of the peripheral(s) configured by the component.
 **            Parity                                       : None
 **            Stop bits                                    : 1
 **            Loop mode                                    : Normal
-**            Baud rate                                    : 38400 baud
+**            Baud rate                                    : 600 baud
 **            Wakeup condition                             : Idle line wakeup
 **            Stop in wait mode                            : no
 **            Idle line mode                               : Starts after start bit
 **            Transmitter output                           : Not inverted
-**            Receiver input                               : Not inverted
+**            Receiver input                               : Inverted
 **            Break generation length                      : 10/11 bits
 **            Receiver                                     : Enabled
 **              RxD                                        : ADC0_DM0/ADC0_SE4a/PTE21/TPM1_CH1/UART0_RX

@@ -10,7 +10,7 @@
 #endif
 
 #ifndef RxBuf_CONFIG_ELEM_SIZE
-  #define RxBuf_CONFIG_ELEM_SIZE        4   /* size of a single element in bytes */
+  #define RxBuf_CONFIG_ELEM_SIZE        1   /* size of a single element in bytes */
 #endif
 
 #endif /* __RxBuf_CONFIG_H */

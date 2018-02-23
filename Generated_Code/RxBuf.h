@@ -7,7 +7,7 @@
 **     Version     : Component 01.051, Driver 01.00, CPU db: 3.00.000
 **     Repository  : My Components
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-02-23, 11:36, # CodeGen: 3
+**     Date/Time   : 2018-02-23, 18:32, # CodeGen: 6
 **     Abstract    :
 **         This component implements a ring buffer for different integer data type.
 **     Settings    :
@@ -16,7 +16,7 @@
 **          Reentrant                                      : yes
 **          Critical Section                               : CS1
 **          Buffer Elements                                : 64
-**          Element Size                                   : 4 Bytes
+**          Element Size                                   : 1 Byte
 **     Contents    :
 **         Clear           - void RxBuf_Clear(void);
 **         Put             - uint8_t RxBuf_Put(RxBuf_ElementType elem);

@@ -37,6 +37,9 @@
 #include "MCUC1.h"
 #include "CS1.h"
 #include "AS1.h"
+#include "LED1.h"
+#include "LEDpin1.h"
+#include "BitIoLdd1.h"
 
 #ifdef __cplusplus
 extern "C" {

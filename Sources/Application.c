@@ -8,6 +8,7 @@
 #include "Application.h"
 #include "RxBuf.h"
 #include "AS1.h"
+#include <stdio.h>
 
 static UART_Desc deviceData;
 
@@ -37,7 +38,10 @@ static void Init(void) {
 
 void APP_Run(void) {
   Init();
+  int i;
+  for(i = 0;i<100000;i++){
   SendString((unsigned char*)"Hello World\r\n", &deviceData);
+  }
   for(;;) {
     if (RxBuf_NofElements()!=0) {
       SendString((unsigned char*)"echo: ", &deviceData);

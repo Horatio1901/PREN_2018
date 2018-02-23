@@ -111,15 +111,15 @@ PE_DEBUGHALT();
       </boolgroup>
     </CompilerProperties>
   </CPU_Bean>
-  <Bean name="RNG1" type="RingBuffer">
+  <Bean name="RxBuf" type="RingBuffer">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="RNG1" />
+      <Component_name v="RxBuf" />
       <SDK v="MCUC1" />
       <Reentrant v="yes" />
       <Critical_Section v="CS1" />
       <Buffer_Elements v="64" />
-      <Element_Size v="4 Bytes" />
+      <Element_Size v="1 Byte" />
     </Properties>
     <Methods>
       <Clear v="generate code" />
@@ -194,12 +194,12 @@ PE_DEBUGHALT();
         <Parity v="None" />
         <Stop_bits v="1" />
         <Loop_mode v="Normal" />
-        <Baud_rate v="38400 baud" />
+        <Baud_rate v="600 baud" />
         <Wakeup_condition v="Idle line wakeup" />
         <Stop_in_wait_mode v="no" />
         <Idle_line_mode v="Starts after start bit" />
         <Transmitter_output v="Not inverted" />
-        <Receiver_input v="Not inverted" />
+        <Receiver_input v="Inverted" />
         <Break_generation_length v="10/11 bits" />
         <boolgroup name="Receiver" v="Enabled">
           <RxD v="ADC0_DM0/ADC0_SE4a/PTE21/TPM1_CH1/UART0_RX" />
