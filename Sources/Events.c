@@ -73,11 +73,17 @@ void Cpu_OnNMIINT(void)
 /* ===================================================================*/
 void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr)
 {
+	RxBuf_ElementType chr[100];
 	UART_Desc *ptr = (UART_Desc*)UserDataPtr;
 
 	  (void)ptr->rxPutFct(ptr->rxChar); /* but received character into buffer */
 	  (void)AS1_ReceiveBlock(ptr->handle, (LDD_TData *)&ptr->rxChar, sizeof(ptr->rxChar));
-	  LED1_Neg();
+	  if(RxBuf_NofElements() == 30){
+		  RxBuf_Getn(chr,30);
+    	  if(chr[0]=='1'){
+	         LED1_Neg();
+		  }
+	  }
 }
 
 /*

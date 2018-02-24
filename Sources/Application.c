@@ -39,19 +39,17 @@ static void Init(void) {
 void APP_Run(void) {
   Init();
   int i;
-  for(i = 0;i<100000;i++){
-  SendString((unsigned char*)"Hello World\r\n", &deviceData);
-  }
+  SendString((unsigned char*)"bbbbbbbbbbbbbbbbbbbb..........          ", &deviceData);
   for(;;) {
     if (RxBuf_NofElements()!=0) {
-      SendString((unsigned char*)"echo: ", &deviceData);
-      while (RxBuf_NofElements()!=0) {
-        unsigned char ch;
+      //SendString((unsigned char*)"echo: ", &deviceData);
+     // while (RxBuf_NofElements()!=0) {
+       // unsigned char ch;
 
-        (void)RxBuf_Get(&ch);
-        SendChar(ch, &deviceData);
-      }
-      SendString((unsigned char*)"\r\n", &deviceData);
+        //(void)RxBuf_Get(&ch);
+        //SendChar(ch, &deviceData);
+      //}
+      //SendString((unsigned char*)"\r\n", &deviceData);
     }
   }
 }
