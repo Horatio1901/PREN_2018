@@ -19,5 +19,6 @@ typedef struct {
 } UART_Desc;
 
 void APP_Run(void);
+void RS232Init(void);
 
 #endif /* APPLICATION_H_ */

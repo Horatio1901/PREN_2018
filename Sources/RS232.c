@@ -5,7 +5,7 @@
  *      Author: mario
  */
 
-#include "Application.h"
+#include "RS232.h"
 #include "RxBuf.h"
 #include "AS1.h"
 #include <stdio.h>
@@ -24,7 +24,7 @@ static void SendString(const unsigned char *str,  UART_Desc *desc) {
   }
 }
 
-static void Init(void) {
+ void RS232Init(void) {
   /* initialize struct fields */
   deviceData.handle = AS1_Init(&deviceData);
   deviceData.isSent = FALSE;
@@ -37,7 +37,6 @@ static void Init(void) {
 }
 
 void APP_Run(void) {
-  Init();
   int i;
   SendString((unsigned char*)"0123456789012345678901234567890", &deviceData);
   for(;;) {
