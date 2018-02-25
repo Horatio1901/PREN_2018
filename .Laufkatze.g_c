@@ -52,7 +52,7 @@
       <GenExtraFileSrcDir9>Repositories\lib\doxygen\</GenExtraFileSrcDir9>
       <XtraAge0>1280793473</XtraAge0>
       <XtraAge1>1280793473</XtraAge1>
-      <XtraAge2>1280807949</XtraAge2>
+      <XtraAge2>1280818010</XtraAge2>
       <XtraAge5>1280810306</XtraAge5>
       <XtraAge10>1280810306</XtraAge10>
       <XtraAge11>1280810306</XtraAge11>
@@ -344,7 +344,7 @@
     </GenFiles>
     <SignalListFile>Documentation\Laufkatze_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>13</ProjectModificationStamp>
+    <ProjectModificationStamp>14</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -741,8 +741,8 @@
     <GenComponentVersion>01.188</GenComponentVersion>
     <GenDriverVersion>01.12</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1280809690</HeaderAge>
-    <CodeAge>1280809690</CodeAge>
+    <HeaderAge>1280868760</HeaderAge>
+    <CodeAge>1280868760</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>36</GenNumMethods>
     <Init>true</Init>

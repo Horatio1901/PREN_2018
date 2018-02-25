@@ -7,7 +7,7 @@
 **     Version     : Component 01.188, Driver 01.12, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-02-23, 19:22, # CodeGen: 11
+**     Date/Time   : 2018-02-24, 16:12, # CodeGen: 15
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -35,7 +35,7 @@
 **            Stop in wait mode                            : no
 **            Idle line mode                               : Starts after start bit
 **            Transmitter output                           : Not inverted
-**            Receiver input                               : Inverted
+**            Receiver input                               : Not inverted
 **            Break generation length                      : 10/11 bits
 **            Receiver                                     : Enabled
 **              RxD                                        : ADC0_DM0/ADC0_SE4a/PTE21/TPM1_CH1/UART0_RX
@@ -208,8 +208,8 @@ LDD_TDeviceData* AS1_Init(LDD_TUserData *UserDataPtr)
   UART0_C3 = 0x00U;                    /*  Set the C3 register */
   /* UART0_C4: MAEN1=0,MAEN2=0,M10=0,OSR=0 */
   UART0_C4 = UART0_C4_OSR(0x00);       /*  Set the C4 register */
-  /* UART0_S2: LBKDIF=0,RXEDGIF=0,MSBF=0,RXINV=1,RWUID=0,BRK13=0,LBKDE=0,RAF=0 */
-  UART0_S2 = UART0_S2_RXINV_MASK;      /*  Set the S2 register */
+  /* UART0_S2: LBKDIF=0,RXEDGIF=0,MSBF=0,RXINV=0,RWUID=0,BRK13=0,LBKDE=0,RAF=0 */
+  UART0_S2 = 0x00U;                    /*  Set the S2 register */
   SIM_PDD_SetClockSourceUART0(SIM_BASE_PTR, SIM_PDD_UART0_INTERNAL_REF_CLOCK);
   UART0_PDD_SetBaudRate(UART0_BASE_PTR, 11U); /* Set the baud rate register. */
   UART0_PDD_SetOversamplingRatio(UART0_BASE_PTR, 4U);

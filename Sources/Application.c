@@ -39,7 +39,7 @@ static void Init(void) {
 void APP_Run(void) {
   Init();
   int i;
-  SendString((unsigned char*)"bbbbbbbbbbbbbbbbbbbb..........          ", &deviceData);
+  SendString((unsigned char*)"0123456789012345678901234567890", &deviceData);
   for(;;) {
     if (RxBuf_NofElements()!=0) {
       //SendString((unsigned char*)"echo: ", &deviceData);
