@@ -199,7 +199,7 @@ PE_DEBUGHALT();
         <Stop_in_wait_mode v="no" />
         <Idle_line_mode v="Starts after start bit" />
         <Transmitter_output v="Not inverted" />
-        <Receiver_input v="Inverted" />
+        <Receiver_input v="Not inverted" />
         <Break_generation_length v="10/11 bits" />
         <boolgroup name="Receiver" v="Enabled">
           <RxD v="ADC0_DM0/ADC0_SE4a/PTE21/TPM1_CH1/UART0_RX" />
