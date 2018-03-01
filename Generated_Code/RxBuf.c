@@ -87,6 +87,11 @@ static RxBuf_ElementType RxBuf_buffer[RxBuf_CONFIG_BUF_SIZE]; /* ring buffer */
 static RxBuf_BufSizeType RxBuf_inIdx;  /* input index */
 static RxBuf_BufSizeType RxBuf_outIdx; /* output index */
 static RxBuf_BufSizeType RxBuf_inSize; /* size data in buffer */
+
+RxBuf_BufSizeType getRxBuf_Element(void) {
+	RxBuf_outIdx++;
+	return RxBuf_buffer[RxBuf_outIdx-1];
+}
 /*
 ** ===================================================================
 **     Method      :  RxBuf_Put (component RingBuffer)

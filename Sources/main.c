@@ -61,6 +61,7 @@ int main(void)
 
   /* Write your code here */
   RS232Init();
+  initCommand();
   for(;;) {
 	  APP_Run();
 

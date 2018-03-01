@@ -38,7 +38,7 @@ static void SendString(const unsigned char *str,  UART_Desc *desc) {
 
 void APP_Run(void) {
   int i;
-  SendString((unsigned char*)"ff1234r2f3q4f245tg345t345tgf", &deviceData);
+  //SendString((unsigned char*)"ff1234r2f3q4f245tg345t345tgf", &deviceData);
   for(;;) {
     if (RxBuf_NofElements()!=0) {
       //SendString((unsigned char*)"echo: ", &deviceData);

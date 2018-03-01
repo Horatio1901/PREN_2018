@@ -20,7 +20,9 @@ typedef struct {
 	uint8_t controlSignal;	/*control signal Bit[0] 0/1 Electromanet off/on, Bit[1] 0/1 drive motor no Reset/Reset, Bit[2] 0/1 winch motor no Reset/Reset*/
 } Command_t;
 
-
-
+void initCommand(void);
+void Command_bufferPut(Command_t temp);
+Command_t Command_bufferPull(void);
+uint8_t getBufferSoze(void);
 
 #endif /* SOURCES_COMMANDTOVEHICLE_H_ */

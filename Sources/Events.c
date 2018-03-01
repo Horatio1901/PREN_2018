@@ -33,12 +33,16 @@
 extern "C" {
 #endif 
 
-static short startCounter = 0;
-static short dataByteCounter = 0;
-
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "RS232.h"
 #include "CommandToVehicle.h"
+#include "RxBuf.h"
+
+static short startCounter = 0;
+static short dataByteCounter = 0;
+static Command_t temp_Command;
+
+
 
 /*
  ** ===================================================================
@@ -88,9 +92,11 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 		if (dataByteCounter < 5) {
 			dataByteCounter++;
 			(void) ptr->rxPutFct(ptr->rxChar); /* put received character into buffer */
-		}
-		else {
-
+		} else {
+			temp_Command.driveSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());
+			temp_Command.winchSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());
+			temp_Command.controlSignal = getRxBuf_Element();
+			Command_bufferPut(temp_Command);
 			dataByteCounter = 0;
 			startCounter = 0;
 		}
