@@ -38,6 +38,7 @@ static short dataByteCounter = 0;
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "RS232.h"
+#include "CommandToVehicle.h"
 
 /*
  ** ===================================================================
@@ -89,6 +90,7 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 			(void) ptr->rxPutFct(ptr->rxChar); /* put received character into buffer */
 		}
 		else {
+
 			dataByteCounter = 0;
 			startCounter = 0;
 		}
@@ -97,7 +99,7 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 			sizeof(ptr->rxChar));
 }
 
-/*
+/*((highByte << 8 ) | lowByte);
  ** ===================================================================
  **     Event       :  AS1_OnBlockSent (module Events)
  **
