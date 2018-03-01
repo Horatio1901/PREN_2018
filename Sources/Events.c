@@ -93,9 +93,9 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 			dataByteCounter++;
 			(void) ptr->rxPutFct(ptr->rxChar); /* put received character into buffer */
 		} else {
-			temp_Command.driveSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());
-			temp_Command.winchSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());
-			temp_Command.controlSignal = getRxBuf_Element();
+			temp_Command.driveSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());	// Write the first 2 bytes from the Buffer to the driveSpeed
+			temp_Command.winchSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());	// Write the second 2 bytes from the Buffer to the winchSpeed
+			temp_Command.controlSignal = getRxBuf_Element();				// Write Byte 5 to ControlSignal
 			Command_bufferPut(temp_Command);
 			dataByteCounter = 0;
 			startCounter = 0;

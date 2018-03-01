@@ -18,6 +18,19 @@ void initCommand(void) {
 	CoBuf_inSize = 0;
 }
 
+/*
+** ===================================================================
+**     Method      :  Command_bufferPut (Command_t temp)
+**     Description :
+**         Puts a new element into the buffer
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**
+**
+**
+** ===================================================================
+*/
+
 void Command_bufferPut(Command_t temp) {
 	if (CoBuf_inSize < COMMAND_BUFFER_SIZE) {
 		Command_buffer[CoBuf_inIdx] = temp;
