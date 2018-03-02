@@ -38,11 +38,8 @@ extern "C" {
 #include "CommandToVehicle.h"
 #include "RxBuf.h"
 
-static short startCounter = 0;
 static short dataByteCounter = 0;
 static Command_t temp_Command;
-
-
 
 /*
  ** ===================================================================
@@ -80,25 +77,17 @@ void Cpu_OnNMIINT(void) {
 void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 	RxBuf_ElementType chr[100];
 	UART_Desc *ptr = (UART_Desc*) UserDataPtr;
-	if (startCounter < 3) {
-		if (ptr->rxChar == 0xff) {
-			startCounter++;
-			(void) AS1_ReceiveBlock(ptr->handle, (LDD_TData *) &ptr->rxChar,
-					sizeof(ptr->rxChar));
-		} else {
-			startCounter = 0;
-		}
-	} else {
-		if (dataByteCounter < 5) {
-			dataByteCounter++;
-			(void) ptr->rxPutFct(ptr->rxChar); /* put received character into buffer */
-		} else {
-			temp_Command.driveSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());	// Write the first 2 bytes from the Buffer to the driveSpeed
-			temp_Command.winchSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());	// Write the second 2 bytes from the Buffer to the winchSpeed
-			temp_Command.controlSignal = getRxBuf_Element();				// Write Byte 5 to ControlSignal
+
+	if (dataByteCounter < 5) {
+		dataByteCounter++;
+		(void) ptr->rxPutFct(ptr->rxChar); /* put received character into buffer */
+		if (dataByteCounter == 5) {
+			temp_Command.driveSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());// Write the first 2 bytes from the Buffer to the driveSpeed
+			temp_Command.winchSpeed = (getRxBuf_Element() << 8
+					| getRxBuf_Element());// Write the second 2 bytes from the Buffer to the winchSpeed
+			temp_Command.controlSignal = getRxBuf_Element();// Write Byte 5 to ControlSignal
 			Command_bufferPut(temp_Command);
 			dataByteCounter = 0;
-			startCounter = 0;
 		}
 	}
 	(void) AS1_ReceiveBlock(ptr->handle, (LDD_TData *) &ptr->rxChar,
