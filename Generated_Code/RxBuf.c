@@ -89,7 +89,15 @@ static RxBuf_BufSizeType RxBuf_outIdx; /* output index */
 static RxBuf_BufSizeType RxBuf_inSize; /* size data in buffer */
 
 RxBuf_BufSizeType getRxBuf_Element(void) {
-	RxBuf_outIdx++;
+	 if (RxBuf_inSize==0) {
+	    return;
+	  } else {
+	    RxBuf_inSize--;
+	    RxBuf_outIdx++;
+	    if (RxBuf_outIdx==RxBuf_CONFIG_BUF_SIZE) {
+	      RxBuf_outIdx = 0;
+	    }
+	  }
 	return RxBuf_buffer[RxBuf_outIdx-1];
 }
 /*

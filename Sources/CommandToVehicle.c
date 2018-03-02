@@ -42,6 +42,19 @@ void Command_bufferPut(Command_t temp) {
 	}
 }
 
+/*
+** ===================================================================
+**     Method      :  Command_bufferPut (Command_t temp)
+**     Description :
+**         Removes an element into the buffer
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**
+**
+**
+** ===================================================================
+*/
+
 Command_t Command_bufferPull(void) {
 	Command_t temp;
 	if (CoBuf_inSize > 0) {
@@ -57,7 +70,4 @@ Command_t Command_bufferPull(void) {
 	return temp;
 }
 
-uint8_t getBufferSoze(void) {
-	return CoBuf_inSize;
-}
 

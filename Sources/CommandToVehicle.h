@@ -23,6 +23,6 @@ typedef struct {
 void initCommand(void);
 void Command_bufferPut(Command_t temp);
 Command_t Command_bufferPull(void);
-uint8_t getBufferSoze(void);
+
 
 #endif /* SOURCES_COMMANDTOVEHICLE_H_ */
