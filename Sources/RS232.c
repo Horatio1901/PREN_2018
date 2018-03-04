@@ -36,7 +36,7 @@ static void SendString(const unsigned char *str,  UART_Desc *desc) {
   while(AS1_ReceiveBlock(deviceData.handle, (LDD_TData *)&deviceData.rxChar, sizeof(deviceData.rxChar))!=ERR_OK) {} /* initial kick off for receiving data */
 }
 
-void APP_Run(char test) {
+void Send_Satus(char test) {
   int i;
   SendChar(test, &deviceData);
   //for(;;) {

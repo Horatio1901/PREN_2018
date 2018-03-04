@@ -7,7 +7,7 @@
 **     Version     : Component 01.051, Driver 01.00, CPU db: 3.00.000
 **     Repository  : My Components
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-02-23, 18:32, # CodeGen: 6
+**     Date/Time   : 2018-03-04, 11:28, # CodeGen: 21
 **     Abstract    :
 **         This component implements a ring buffer for different integer data type.
 **     Settings    :
@@ -89,17 +89,21 @@ static RxBuf_BufSizeType RxBuf_outIdx; /* output index */
 static RxBuf_BufSizeType RxBuf_inSize; /* size data in buffer */
 
 RxBuf_BufSizeType getRxBuf_Element(void) {
-	 if (RxBuf_inSize==0) {
-	    return;
-	  } else {
-	    RxBuf_inSize--;
-	    RxBuf_outIdx++;
-	    if (RxBuf_outIdx==RxBuf_CONFIG_BUF_SIZE) {
-	      RxBuf_outIdx = 0;
-	    }
-	  }
+	RxBuf_outIdx++;
+	if(RxBuf_inSize== 0){
+		return;
+	}
+	else {
+		RxBuf_inSize--;
+		RxBuf_outIdx++;
+		if(RxBuf_outIdx==RxBuf_CONFIG_BUF_SIZE){
+			RxBuf_outIdx = 0;
+		}
+	}
 	return RxBuf_buffer[RxBuf_outIdx-1];
 }
+
+
 /*
 ** ===================================================================
 **     Method      :  RxBuf_Put (component RingBuffer)

@@ -64,6 +64,7 @@
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\CommandToVehicle.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\Events.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\RS232.c</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\SpeedMotor.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\main.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
@@ -87,6 +88,7 @@
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\CommandToVehicle.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\Events.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\RS232.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\SpeedMotor.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Static_Code\IO_Map\MKL25Z4.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Static_Code\PDD\ADC_PDD.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Static_Code\PDD\CMP_PDD.h</PathName>

@@ -18,7 +18,7 @@ typedef struct {
   uint8_t (*rxPutFct)(uint8_t); /* callback to put received character into buffer */
 } UART_Desc;
 
-void APP_Run(void);
+void Send_Satus(char test);
 void RS232Init(void);
 
 #endif /* APPLICATION_H_ */
