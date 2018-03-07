@@ -36,6 +36,9 @@
 #include "LED1.h"
 #include "LEDpin1.h"
 #include "BitIoLdd1.h"
+#include "PWM1.h"
+#include "PwmLdd1.h"
+#include "TU1.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -52,7 +55,7 @@ int main(void)
 	/* Write your local variable definition here */
 	int16_t myInt = -1234;
 	char lowByte, highByte;
-
+	Command_t my_command;
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/
@@ -62,27 +65,30 @@ int main(void)
 	initCommand();
 
 	lowByte = myInt;
-	highByte = (myInt>>8);
-
-	for (;;) {
-		Send_Satus(lowByte);
-		Send_Satus(highByte);
-		long i = 0;
-		while(i < 1000000){
-			i++;
-		}
-
+	highByte = (myInt >> 8);
+	Send_Satus(lowByte);
+	Send_Satus(highByte);
+	long i = 0;
+	while (i < 1000000) {
+		i++;
 	}
 
-	/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
-  /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
-  #ifdef PEX_RTOS_START
-    PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
-  #endif
-  /*** End of RTOS startup code.  ***/
-  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-  for(;;){}
-  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+	PWM1_Enable();
+
+	for (;;) {
+
+}
+
+/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
+/*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
+#ifdef PEX_RTOS_START
+PEX_RTOS_START(); /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
+#endif
+/*** End of RTOS startup code.  ***/
+/*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+for (;;) {
+}
+/*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
 /* END main */

@@ -21,12 +21,12 @@
  */
 #include <stdio.h>
 
-int16_t speed;
-int16_t frequence;
+//int16_t speed;
+//int16_t frequence;
 
-void claculate_Frequence(int16_t speed) {
-	frequence = speed*12.36;
-}
+//void claculate_Frequence(int16_t speed) {
+//	frequence = speed*12.36;
+//}
 
 
 

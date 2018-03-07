@@ -6,7 +6,7 @@
 **     Version     : Component 01.025, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-02-23, 19:42, # CodeGen: 12
+**     Date/Time   : 2018-03-07, 19:26, # CodeGen: 24
 **     Abstract    :
 **
 **     Settings    :
@@ -62,6 +62,9 @@
   #include "LED1.h"
   #include "LEDpin1.h"
   #include "BitIoLdd1.h"
+  #include "PWM1.h"
+  #include "PwmLdd1.h"
+  #include "TU1.h"
   #include "Events.h"
 
 
