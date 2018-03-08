@@ -40,7 +40,10 @@ extern "C" {
 
 static short dataByteCounter = 0;
 static Command_t temp_Command;
-
+static RxBuf_ElementType *temp_ElementLow;
+static RxBuf_ElementType *temp_ElementHigh;
+static uint8_t temp1;
+static uint8_t temp2;
 /*
  ** ===================================================================
  **     Event       :  Cpu_OnNMIINT (module Events)
@@ -82,10 +85,21 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 		dataByteCounter++;
 		(void) ptr->rxPutFct(ptr->rxChar); /* put received character into buffer */
 		if (dataByteCounter == 5) {
-			//temp_Command.driveSpeed = (getRxBuf_Element() << 8 | getRxBuf_Element());// Write the first 2 bytes from the Buffer to the driveSpeed
-			//temp_Command.winchSpeed = (getRxBuf_Element() << 8
-			//		| getRxBuf_Element());// Write the second 2 bytes from the Buffer to the winchSpeed
-			//temp_Command.controlSignal = getRxBuf_Element();// Write Byte 5 to ControlSignal
+			RxBuf_Get(&temp_ElementHigh);
+			temp1 = temp_ElementHigh;
+			RxBuf_Get(&temp_ElementLow);
+			temp2 = temp_ElementLow;
+			temp_Command.driveSpeed = (temp1 << 8
+					| temp2); // Write the first 2 bytes from the Buffer to the driveSpeed
+			RxBuf_Get(&temp_ElementHigh);
+			temp1 = temp_ElementHigh;
+			RxBuf_Get(&temp_ElementLow);
+			temp2 = temp_ElementLow;
+			temp_Command.winchSpeed = (temp1 << 8
+					| temp2); // Write the second 2 bytes from the Buffer to the winchSpeed
+			RxBuf_Get(&temp_ElementLow);
+			temp1 = temp_ElementLow;
+			temp_Command.controlSignal = temp1; // Write Byte 5 to ControlSignal
 			Command_bufferPut(temp_Command);
 			dataByteCounter = 0;
 		}
