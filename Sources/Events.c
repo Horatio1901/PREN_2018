@@ -27,19 +27,19 @@
 /* MODULE Events */
 
 #include "Cpu.h"
-#include "Events.h"
+#include "Project_Headers\Events.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-#include "RS232.h"
-#include "CommandToVehicle.h"
+#include "Project_Headers\RS232.h"
+#include "Project_Headers\RecievingCommands.h"
 #include "RxBuf.h"
 
 static short dataByteCounter = 0;
-static Command_t temp_Command;
+static Command_recieve_t temp_Command;
 static RxBuf_ElementType *temp_ElementLow;
 static RxBuf_ElementType *temp_ElementHigh;
 static uint8_t temp1;

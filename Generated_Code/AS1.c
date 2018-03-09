@@ -119,7 +119,7 @@
 
 /* {Default RTOS Adapter} No RTOS includes */
 #include "AS1.h"
-#include "Events.h"
+#include "Project_Headers\Events.h"
 #include "UART0_PDD.h"
 #include "SIM_PDD.h"
 

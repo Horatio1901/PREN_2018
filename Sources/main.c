@@ -28,7 +28,7 @@
 
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
-#include "Events.h"
+#include "Project_Headers\Events.h"
 #include "RxBuf.h"
 #include "MCUC1.h"
 #include "CS1.h"
@@ -45,9 +45,11 @@
 #include "PE_Const.h"
 #include "IO_Map.h"
 /* User includes (#include below this line is not maintained by Processor Expert) */
-#include "RS232.h"
-#include "CommandToVehicle.h"
+#include "Project_Headers\RS232.h"
+#include "Project_Headers\RecievingCommands.h"
+#include "Project_Headers\SendingCommands.h"
 extern bool Flag_Recieved;
+extern bool Flag_Send;
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -56,8 +58,8 @@ int main(void)
 	/* Write your local variable definition here */
 	int16_t myInt = -1234;
 	char lowByte, highByte;
-	Command_t my_command;
-	char sendArray[] = "hello";
+	Command_recieve_t my_recieved_command;
+	Command_send_t my_send_command;
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/
@@ -71,14 +73,14 @@ int main(void)
 	PWM1_Enable();
 
 	for (;;) {
+		int i = 0;
 		if (Flag_Recieved == 1) {
+			my_recieved_command = Command_bufferPull();
+			my_send_command.driveSpeed = my_recieved_command.driveSpeed;
+			my_send_command.winchSpeed = my_recieved_command.winchSpeed;
+			my_send_command.StatusSignal = my_recieved_command.controlSignal;
+			CommandSend(my_send_command);
 			Flag_Recieved = 0;
-			int j;
-			for (j = 0; j < 5; j++) {
-				Send_Status(sendArray[j]);
-			}
-			long i = 0;
-			i = 0;
 			while (i < 1000000) {
 				i++;
 			}

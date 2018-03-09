@@ -257,7 +257,7 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-#include "Events.h"
+#include "Project_Headers\Events.h"
 #include "Cpu.h"
 
 #ifdef __cplusplus
