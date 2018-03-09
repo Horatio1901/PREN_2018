@@ -27,7 +27,7 @@
 /* MODULE Events */
 
 #include "Cpu.h"
-#include "Project_Headers\Events.h"
+#include "Events.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -58,6 +58,7 @@ void Command_bufferPut(Command_recieve_t temp) {
 */
 
 Command_recieve_t Command_bufferPull(void) {
+	Flag_Recieved = 0;
 	Command_recieve_t temp;
 	if (CoBuf_inSize > 0) {
 		temp = Command_buffer[CoBuf_outIdx];

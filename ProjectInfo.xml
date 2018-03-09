@@ -64,9 +64,10 @@
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\TU1.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Vectors.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Project_Settings\Startup_Code\startup.c</PathName>
-      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\CommandToVehicle.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\Events.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\RS232.c</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\RecievingCommands.c</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\SendingCommands.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\SpeedMotor.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\main.c</PathName>
     </GeneratedCs>
@@ -91,10 +92,12 @@
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\RxBuf.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\RxBufconfig.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\TU1.h</PathName>
-      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\CommandToVehicle.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\Events.h</PathName>
-      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\RS232.h</PathName>
-      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\SpeedMotor.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\Project_Headers\Events.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\Project_Headers\RS232.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\Project_Headers\RecievingCommands.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\Project_Headers\SendingCommands.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Sources\Project_Headers\SpeedMotor.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Static_Code\IO_Map\MKL25Z4.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Static_Code\PDD\ADC_PDD.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Static_Code\PDD\CMP_PDD.h</PathName>
