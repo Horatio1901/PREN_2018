@@ -11,6 +11,7 @@ static Command_t Command_buffer[COMMAND_BUFFER_SIZE];
 static uint8_t CoBuf_inIdx; /* input index */
 static uint8_t CoBuf_outIdx; /* output index */
 static uint8_t CoBuf_inSize; /* size data in buffer */
+bool Flag_Recieved = 0;
 
 void initCommand(void) {
 	CoBuf_inIdx = 0;
@@ -32,6 +33,7 @@ void initCommand(void) {
 */
 
 void Command_bufferPut(Command_t temp) {
+	Flag_Recieved = 1;
 	if (CoBuf_inSize < COMMAND_BUFFER_SIZE) {
 		Command_buffer[CoBuf_inIdx] = temp;
 		CoBuf_inSize++;

@@ -47,6 +47,7 @@
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "RS232.h"
 #include "CommandToVehicle.h"
+extern bool Flag_Recieved;
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -56,39 +57,45 @@ int main(void)
 	int16_t myInt = -1234;
 	char lowByte, highByte;
 	Command_t my_command;
+	char sendArray[] = "hello";
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/
 
 	/* Write your code here */
+	highByte = (myInt >> 8);
+	lowByte = myInt;
 	RS232Init();
 	initCommand();
 
 	PWM1_Enable();
 
 	for (;;) {
-
-		highByte = (myInt >> 8);
-		lowByte = myInt;
-		Send_Satus(highByte);
-		Send_Satus(lowByte);
-		long i = 0;
-		 i = 0;
-		while (i < 1000000) {
-			i++;
+		if (Flag_Recieved == 1) {
+			Flag_Recieved = 0;
+			int j;
+			for (j = 0; j < 5; j++) {
+				Send_Status(sendArray[j]);
+			}
+			long i = 0;
+			i = 0;
+			while (i < 1000000) {
+				i++;
+			}
 		}
 
-}
+	}
 
-/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
-  /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
-  #ifdef PEX_RTOS_START
-    PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
-  #endif
-  /*** End of RTOS startup code.  ***/
-  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-  for(;;){}
-  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+	/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
+	/*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
+#ifdef PEX_RTOS_START
+	PEX_RTOS_START(); /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
+#endif
+	/*** End of RTOS startup code.  ***/
+	/*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+	for (;;) {
+	}
+	/*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
 /* END main */

@@ -103,7 +103,7 @@ char Convert_uint16ToChar(uint16_t speed) {
 
 }
 
-void Send_Satus(char test) {
+void Send_Status(char test) {
 	int i;
 	SendChar(test, &deviceData);
 	//for(;;) {

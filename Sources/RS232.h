@@ -29,7 +29,7 @@ typedef struct {
 } Status_t;
 
 
-void Send_Satus(char test);
+void Send_Status(char test);
 void RS232Init(void);
 
 #endif /* APPLICATION_H_ */
