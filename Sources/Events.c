@@ -160,9 +160,17 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	if (Flag_Recieved == 1) {
 		my_recieved_command = Command_bufferPull();
 		if (my_recieved_command.driveSpeed != 0) {
+			SpeedSteperEnable_ClrVal();
 			offset = (0.161778 / (0.0002 * my_recieved_command.driveSpeed));
+			if (offset < 0) {
+				offset = abs(offset);
+				DirectionPin_SetVal();
+			} else
+				DirectionPin_ClrVal();
+		} else {
+			offset = 0;
+			SpeedSteperEnable_SetVal();
 		}
-		else offset = 0;
 	}
 	if (counter >= offset) {
 
