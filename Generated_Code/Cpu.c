@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : KL25P80M48SF0RM, Rev.3, Sep 2012
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-03-09, 10:15, # CodeGen: 29
+**     Date/Time   : 2018-03-10, 15:15, # CodeGen: 40
 **     Abstract    :
 **
 **     Settings    :
@@ -250,9 +250,9 @@
 #include "LED1.h"
 #include "LEDpin1.h"
 #include "BitIoLdd1.h"
-#include "PWM1.h"
-#include "PwmLdd1.h"
-#include "TU1.h"
+#include "TU2.h"
+#include "SpeedStepper.h"
+#include "BitIoLdd2.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -439,8 +439,10 @@ void PE_low_level_init(void)
   (void)BitIoLdd1_Init(NULL);
   /* ### LED "LED1" init code ... */
   LED1_Init(); /* initialize LED driver */
-  /* ### PWM_LDD "PwmLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)PwmLdd1_Init(NULL);
+  /* ### TimerUnit_LDD "TU2" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)TU2_Init(NULL);
+  /* ### BitIO_LDD "BitIoLdd2" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)BitIoLdd2_Init(NULL);
   __EI();
 }
   /* Flash configuration field */

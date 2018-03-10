@@ -36,9 +36,9 @@
 #include "LED1.h"
 #include "LEDpin1.h"
 #include "BitIoLdd1.h"
-#include "PWM1.h"
-#include "PwmLdd1.h"
-#include "TU1.h"
+#include "TU2.h"
+#include "SpeedStepper.h"
+#include "BitIoLdd2.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -50,6 +50,8 @@
 #include "Project_Headers\SendingCommands.h"
 extern bool Flag_Recieved;
 extern bool Flag_Send;
+Command_recieve_t my_recieved_command;
+Command_send_t my_send_command;
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -58,8 +60,7 @@ int main(void)
 	/* Write your local variable definition here */
 	int16_t myInt = -1234;
 	char lowByte, highByte;
-	Command_recieve_t my_recieved_command;
-	Command_send_t my_send_command;
+
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/
@@ -70,8 +71,6 @@ int main(void)
 	RS232Init();
 	initCommand();
 
-	PWM1_Enable();
-
 	for (;;) {
 		int i = 0;
 		if (Flag_Recieved == 1) {
@@ -80,22 +79,20 @@ int main(void)
 			my_send_command.winchSpeed = my_recieved_command.winchSpeed;
 			my_send_command.StatusSignal = my_recieved_command.controlSignal;
 			CommandSend(my_send_command);
-//			while (i < 1000000) {
-	//			i++;
-		//	}
 		}
 
 	}
 
 	/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
-  /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
-  #ifdef PEX_RTOS_START
-    PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
-  #endif
-  /*** End of RTOS startup code.  ***/
-  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-  for(;;){}
-  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+	/*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
+#ifdef PEX_RTOS_START
+	PEX_RTOS_START(); /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
+#endif
+	/*** End of RTOS startup code.  ***/
+	/*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+	for (;;) {
+	}
+	/*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
 /* END main */

@@ -6,7 +6,7 @@
 **     Version     : Component 01.025, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-03-09, 10:15, # CodeGen: 29
+**     Date/Time   : 2018-03-10, 15:15, # CodeGen: 40
 **     Abstract    :
 **
 **     Settings    :
@@ -62,9 +62,9 @@
   #include "LED1.h"
   #include "LEDpin1.h"
   #include "BitIoLdd1.h"
-  #include "PWM1.h"
-  #include "PwmLdd1.h"
-  #include "TU1.h"
+  #include "TU2.h"
+  #include "SpeedStepper.h"
+  #include "BitIoLdd2.h"
   #include "Events.h"
 
 
@@ -119,7 +119,7 @@
     (tIsrFunc)&Cpu_Interrupt,          /* 0x20  0x00000080   -   ivINT_CMP0                    unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x21  0x00000084   -   ivINT_TPM0                    unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x22  0x00000088   -   ivINT_TPM1                    unused by PE */
-    (tIsrFunc)&Cpu_Interrupt,          /* 0x23  0x0000008C   -   ivINT_TPM2                    unused by PE */
+    (tIsrFunc)&TU2_Interrupt,          /* 0x23  0x0000008C   2   ivINT_TPM2                    used by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x24  0x00000090   -   ivINT_RTC                     unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x25  0x00000094   -   ivINT_RTC_Seconds             unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x26  0x00000098   -   ivINT_PIT                     unused by PE */

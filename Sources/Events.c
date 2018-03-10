@@ -36,7 +36,11 @@ extern "C" {
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "Project_Headers\RS232.h"
 #include "Project_Headers\RecievingCommands.h"
+#include "Project_Headers\SendingCommands.h"
 #include "RxBuf.h"
+
+extern bool Flag_Recieved;
+extern bool Flag_Send;
 
 static short dataByteCounter = 0;
 static Command_recieve_t temp_Command;
@@ -44,6 +48,9 @@ static RxBuf_ElementType *temp_ElementLow;
 static RxBuf_ElementType *temp_ElementHigh;
 static uint8_t temp1;
 static uint8_t temp2;
+Command_recieve_t my_recieved_command;
+Command_send_t my_send_command;
+static long counter;
 /*
  ** ===================================================================
  **     Event       :  Cpu_OnNMIINT (module Events)
@@ -89,14 +96,12 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 			temp1 = temp_ElementHigh;
 			RxBuf_Get(&temp_ElementLow);
 			temp2 = temp_ElementLow;
-			temp_Command.driveSpeed = (temp1 << 8
-					| temp2); // Write the first 2 bytes from the Buffer to the driveSpeed
+			temp_Command.driveSpeed = (temp1 << 8 | temp2); // Write the first 2 bytes from the Buffer to the driveSpeed
 			RxBuf_Get(&temp_ElementHigh);
 			temp1 = temp_ElementHigh;
 			RxBuf_Get(&temp_ElementLow);
 			temp2 = temp_ElementLow;
-			temp_Command.winchSpeed = (temp1 << 8
-					| temp2); // Write the second 2 bytes from the Buffer to the winchSpeed
+			temp_Command.winchSpeed = (temp1 << 8 | temp2); // Write the second 2 bytes from the Buffer to the winchSpeed
 			RxBuf_Get(&temp_ElementLow);
 			temp1 = temp_ElementLow;
 			temp_Command.controlSignal = temp1; // Write Byte 5 to ControlSignal
@@ -128,6 +133,41 @@ void AS1_OnBlockSent(LDD_TUserData *UserDataPtr) {
 	UART_Desc *ptr = (UART_Desc*) UserDataPtr;
 
 	ptr->isSent = TRUE; /* set flag so sender knows we have finished */
+}
+
+/*
+ ** ===================================================================
+ **     Event       :  TU2_OnCounterRestart (module Events)
+ **
+ **     Component   :  TU2 [TimerUnit_LDD]
+ */
+/*!
+ **     @brief
+ **         Called if counter overflow/underflow or counter is
+ **         reinitialized by modulo or compare register matching.
+ **         OnCounterRestart event and Timer unit must be enabled. See
+ **         [SetEventMask] and [GetEventMask] methods. This event is
+ **         available only if a [Interrupt] is enabled.
+ **     @param
+ **         UserDataPtr     - Pointer to the user or
+ **                           RTOS specific data. The pointer passed as
+ **                           the parameter of Init method.
+ */
+/* ===================================================================*/
+void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
+	counter++;
+	if (Flag_Recieved == 1) {
+		my_recieved_command = Command_bufferPull();
+		my_send_command.driveSpeed = my_recieved_command.driveSpeed;
+		my_send_command.winchSpeed = my_recieved_command.winchSpeed;
+		my_send_command.StatusSignal = my_recieved_command.controlSignal;
+	}
+	if (counter >= 10) {
+
+		SpeedStepper_NegVal();
+		LED1_Neg();
+		counter = 0;
+	}
 }
 
 /* END Events */
