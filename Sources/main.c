@@ -72,14 +72,14 @@ int main(void)
 	initCommand();
 
 	for (;;) {
-		int i = 0;
-		if (Flag_Recieved == 1) {
-			my_recieved_command = Command_bufferPull();
-			my_send_command.driveSpeed = my_recieved_command.driveSpeed;
-			my_send_command.winchSpeed = my_recieved_command.winchSpeed;
-			my_send_command.StatusSignal = my_recieved_command.controlSignal;
-			CommandSend(my_send_command);
-		}
+
+		//if (Flag_Recieved == 1) {
+			//my_recieved_command = Command_bufferPull();
+			//my_send_command.driveSpeed = my_recieved_command.driveSpeed;
+			//my_send_command.winchSpeed = my_recieved_command.winchSpeed;
+			//my_send_command.StatusSignal = my_recieved_command.controlSignal;
+			//CommandSend(my_send_command);
+		//}
 
 	}
 

@@ -51,6 +51,7 @@ static uint8_t temp2;
 Command_recieve_t my_recieved_command;
 Command_send_t my_send_command;
 static long counter;
+static long offset;
 /*
  ** ===================================================================
  **     Event       :  Cpu_OnNMIINT (module Events)
@@ -158,11 +159,12 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	counter++;
 	if (Flag_Recieved == 1) {
 		my_recieved_command = Command_bufferPull();
-		my_send_command.driveSpeed = my_recieved_command.driveSpeed;
-		my_send_command.winchSpeed = my_recieved_command.winchSpeed;
-		my_send_command.StatusSignal = my_recieved_command.controlSignal;
+		if (my_recieved_command.driveSpeed != 0) {
+			offset = (0.161778 / (0.0002 * my_recieved_command.driveSpeed));
+		}
+		else offset = 0;
 	}
-	if (counter >= 10) {
+	if (counter >= offset) {
 
 		SpeedStepper_NegVal();
 		LED1_Neg();
