@@ -53,6 +53,7 @@ Command_send_t my_send_command;
 static long counterFrequence= 0;
 static long counterStep=0;
 static long offset= 0;
+static long tempOffset =0;
 static double newDistance = 0;
 static double oldDistance = 0;
 int i = 0;
@@ -166,6 +167,7 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 		if (my_recieved_command.driveSpeed != 0) {
 			SpeedSteperEnable_ClrVal();
 			offset = (0.161778 / (0.0002 * my_recieved_command.driveSpeed));	//Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
+			tempOffset = offset;
 			if (offset < 0) {
 				offset = abs(offset);
 				DirectionPin_SetVal();
@@ -184,10 +186,18 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 		i++;
 		SpeedStepper_NegVal();
 		LED1_Neg();
+		if(tempOffset>0){
 		counterStep++;
+		}
+		else counterStep--;
 
 		newDistance = counterStep * 0.161778/2;
-		if((newDistance-oldDistance) >10) {
+		if(((newDistance-oldDistance) >10)&& tempOffset>0) {
+			my_send_command.driveDistance = (int16_t)newDistance;
+			CommandSend_bufferPut(my_send_command);
+			oldDistance = newDistance;
+		}
+		else if(((oldDistance-newDistance) >10)&& tempOffset<0) {
 			my_send_command.driveDistance = (int16_t)newDistance;
 			CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
