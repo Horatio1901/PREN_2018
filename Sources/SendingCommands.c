@@ -38,6 +38,9 @@ void CommandSend_bufferPut(Command_send_t temp) {
 		Command_buffer[CoBuf_inIdx] = temp;
 		CoBuf_inSize++;
 		CoBuf_inIdx++;
+		if(CoBuf_inIdx == COMMAND_BUFFER_SIZE){
+			CoBuf_inIdx =0;
+		}
 	}
 	if (CoBuf_inSize == COMMAND_BUFFER_SIZE) {
 		CoBuf_inIdx = 0;
@@ -73,8 +76,8 @@ Command_send_t CommandSend_bufferPull(void) {
 }
 
 void CommandSend(Command_send_t temp){
-	Send_Status((char)(temp.driveSpeed>>8));
-	Send_Status((char)temp.driveSpeed);
+	Send_Status((char)(temp.driveDistance>>8));
+	Send_Status((char)temp.driveDistance);
 	Send_Status((char)(temp.winchSpeed>>8));
 	Send_Status((char)temp.winchSpeed);
 	Send_Status((char)temp.StatusSignal);

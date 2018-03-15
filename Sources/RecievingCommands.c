@@ -38,6 +38,9 @@ void Command_bufferPut(Command_recieve_t temp) {
 		Command_buffer[CoBuf_inIdx] = temp;
 		CoBuf_inSize++;
 		CoBuf_inIdx++;
+		if (CoBuf_inIdx == COMMAND_BUFFER_SIZE) {
+			CoBuf_inIdx = 0;
+		}
 	}
 	if (CoBuf_inSize == COMMAND_BUFFER_SIZE) {
 		CoBuf_inIdx = 0;

@@ -54,7 +54,7 @@
 #include "Project_Headers\SendingCommands.h"
 extern bool Flag_Recieved;
 extern bool Flag_Send;
-Command_recieve_t my_recieved_command;
+Command_recieve_t my_recieve_command;
 Command_send_t my_send_command;
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
@@ -74,16 +74,15 @@ int main(void)
 	lowByte = myInt;
 	RS232Init();
 	initCommand();
+	DirectionPin_SetVal();
 
 	for (;;) {
 
-		//if (Flag_Recieved == 1) {
-			//my_recieved_command = Command_bufferPull();
-			//my_send_command.driveSpeed = my_recieved_command.driveSpeed;
-			//my_send_command.winchSpeed = my_recieved_command.winchSpeed;
-			//my_send_command.StatusSignal = my_recieved_command.controlSignal;
-			//CommandSend(my_send_command);
-		//}
+		if (Flag_Send == 1) {
+			Flag_Send = 0;
+			my_send_command = CommandSend_bufferPull();
+			CommandSend(my_send_command);
+		}
 
 	}
 
