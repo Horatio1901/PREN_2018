@@ -50,13 +50,13 @@ static uint8_t temp1;
 static uint8_t temp2;
 Command_recieve_t my_recieved_command;
 Command_send_t my_send_command;
-static long counterFrequence= 0;
-static long counterStep=0;
-static long offset= 0;
-static long tempOffset =0;
+static long counterFrequence = 0;
+static long counterStep = 0;
+static long offset = 0;
+static long tempOffset = 0;
 static double newDistance = 0;
 static double oldDistance = 0;
-int i = 0;
+static uint8_t onlyOneReset = 0;
 /*
  ** ===================================================================
  **     Event       :  Cpu_OnNMIINT (module Events)
@@ -166,8 +166,8 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 		my_recieved_command = Command_bufferPull();
 		if (my_recieved_command.driveSpeed != 0) {
 			SpeedSteperEnable_ClrVal();
-			offset = (0.161778 / (0.0002 * my_recieved_command.driveSpeed));	//Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
-			tempOffset = offset;
+			offset = (0.507 / (0.0002 * my_recieved_command.driveSpeed)); //Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
+			tempOffset = offset;											// Offset new for 200 Steps = 0.507
 			if (offset < 0) {
 				offset = abs(offset);
 				DirectionPin_SetVal();
@@ -175,30 +175,36 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 				DirectionPin_ClrVal();
 		} else {
 			offset = 0;
-			SpeedSteperEnable_SetVal();
+			//SpeedSteperEnable_SetVal();
 		}
 	}
-	if(offset !=0){
+	if (offset != 0) {
 		counterFrequence++;
+		 onlyOneReset = 0;
+	} else
+		counterFrequence == 0;
+	if (my_recieved_command.controlSignal != 0 & !onlyOneReset) {
+		newDistance = 0;
+		oldDistance = 0;
+		counterStep = 0;
+		onlyOneReset = 1;
+		my_send_command.driveDistance = 0;
+		CommandSend_bufferPut(my_send_command);
 	}
-	else counterFrequence == 0;
 	if (counterFrequence > offset) {
-		i++;
 		SpeedStepper_NegVal();
 		LED1_Neg();
-		if(tempOffset>0){
-		counterStep++;
-		}
-		else counterStep--;
-
-		newDistance = counterStep * 0.161778/2;
-		if(((newDistance-oldDistance) >10)&& tempOffset>0) {
-			my_send_command.driveDistance = (int16_t)newDistance;
+		if (tempOffset > 0) {
+			counterStep++;
+		} else
+			counterStep--;
+		newDistance = counterStep * 0.507 / 2;
+		if (((newDistance - oldDistance) > 10) && tempOffset > 0) {
+			my_send_command.driveDistance = (int16_t) newDistance;
 			CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
-		}
-		else if(((oldDistance-newDistance) >10)&& tempOffset<0) {
-			my_send_command.driveDistance = (int16_t)newDistance;
+		} else if (((oldDistance - newDistance) > 10) && tempOffset < 0) {
+			my_send_command.driveDistance = (int16_t) newDistance;
 			CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
 		}
