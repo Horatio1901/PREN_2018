@@ -51,10 +51,12 @@
   <FILES>
     <GeneratedCs>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\AS1.c</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Bit1.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd1.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd2.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd3.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd4.c</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd5.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\CS1.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Cpu.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\DirectionPin.c</PathName>
@@ -77,10 +79,12 @@
     </GeneratedCs>
     <GeneratedHs>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\AS1.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Bit1.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd1.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd2.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd3.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd4.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd5.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\CS1.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\CS1config.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Cpu.h</PathName>

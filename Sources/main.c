@@ -43,6 +43,8 @@
 #include "BitIoLdd3.h"
 #include "SpeedSteperEnable.h"
 #include "BitIoLdd4.h"
+#include "Bit1.h"
+#include "BitIoLdd5.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -62,23 +64,20 @@ int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
 {
 	/* Write your local variable definition here */
-	int16_t myInt = -1234;
-	char lowByte, highByte;
 
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/
 
 	/* Write your code here */
-	highByte = (myInt >> 8);
-	lowByte = myInt;
+
 	RS232Init();
 	initCommand();
 	DirectionPin_SetVal();
 
 	for (;;) {
 
-		if (Flag_Send == 1) {
+	if (Flag_Send == 1) {
 			Flag_Send = 0;
 			my_send_command = CommandSend_bufferPull();
 			CommandSend(my_send_command);
