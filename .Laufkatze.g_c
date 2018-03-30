@@ -59,9 +59,9 @@
       <XtraAge2>1280926119</XtraAge2>
       <XtraAge5>1280810306</XtraAge5>
       <XtraAge14>1283357953</XtraAge14>
-      <XtraAge15>1283357953</XtraAge15>
+      <XtraAge15>1283363392</XtraAge15>
       <XtraAge17>1280336697</XtraAge17>
-      <XtraAge18>1283357953</XtraAge18>
+      <XtraAge18>1283363392</XtraAge18>
       <GenExtraFileType18>4</GenExtraFileType18>
       <GenExtraFileType17>5</GenExtraFileType17>
       <GenExtraFileType16>4</GenExtraFileType16>
@@ -333,7 +333,6 @@
         <Line>BitIoLdd4</Line>
         <Line>Cpu</Line>
         <Line>CS1</Line>
-        <Line>DirectionPin</Line>
         <Line>Events</Line>
         <Line>IO_Map</Line>
         <Line>LED1</Line>
@@ -343,6 +342,7 @@
         <Line>PE_Error</Line>
         <Line>PE_Types</Line>
         <Line>RxBuf</Line>
+        <Line>SpeedDirectionPin</Line>
         <Line>SpeedSteperEnable</Line>
         <Line>SpeedStepper</Line>
         <Line>TU2</Line>
@@ -359,7 +359,7 @@
         <Line>TU2</Line>
         <Line>SpeedStepper</Line>
         <Line>BitIoLdd2</Line>
-        <Line>DirectionPin</Line>
+        <Line>SpeedDirectionPin</Line>
         <Line>BitIoLdd3</Line>
         <Line>SpeedSteperEnable</Line>
         <Line>BitIoLdd4</Line>
@@ -367,7 +367,7 @@
     </GenFiles>
     <SignalListFile>Documentation\Laufkatze_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>41</ProjectModificationStamp>
+    <ProjectModificationStamp>42</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -376,7 +376,7 @@
     <GenDriverVersion>01.04</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
     <HeaderAge>1280336698</HeaderAge>
-    <CodeAge>1283357953</CodeAge>
+    <CodeAge>1283363392</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>11</GenNumMethods>
     <SetClockConfiguration>false</SetClockConfiguration>
@@ -1537,12 +1537,12 @@
   </ComponentID_23>
   <ComponentID_25>
     <Generated>true</Generated>
-    <GenCompName>DirectionPin</GenCompName>
+    <GenCompName>SpeedDirectionPin</GenCompName>
     <GenComponentVersion>02.086</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1282050614</HeaderAge>
-    <CodeAge>1282050614</CodeAge>
+    <HeaderAge>1283363392</HeaderAge>
+    <CodeAge>1283363392</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>11</GenNumMethods>
     <GetDir>false</GetDir>

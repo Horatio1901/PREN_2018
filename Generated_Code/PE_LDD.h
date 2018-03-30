@@ -6,7 +6,7 @@
 **     Version     : Component 01.025, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-03-30, 15:39, # CodeGen: 63
+**     Date/Time   : 2018-03-30, 18:17, # CodeGen: 64
 **     Abstract    :
 **
 **     Settings    :
@@ -71,7 +71,7 @@
 #include "TU2.h"
 #include "SpeedStepper.h"
 #include "BitIoLdd2.h"
-#include "DirectionPin.h"
+#include "SpeedDirectionPin.h"
 #include "BitIoLdd3.h"
 #include "SpeedSteperEnable.h"
 #include "BitIoLdd4.h"

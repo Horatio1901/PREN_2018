@@ -8,7 +8,18 @@
 #ifndef SOURCES_SPEEDMOTOR_H_
 #define SOURCES_SPEEDMOTOR_H_
 
+enum Direction {
+	FORWARD,
+	BACKWARD
+};
 
+enum ModuloValue {
+	FIFTH1,
+	FIFTH2,
+	FIFTH3,
+	FIFTH4,
+	FIFTH5
+};
 
 
 

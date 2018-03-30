@@ -39,7 +39,7 @@
 #include "TU2.h"
 #include "SpeedStepper.h"
 #include "BitIoLdd2.h"
-#include "DirectionPin.h"
+#include "SpeedDirectionPin.h"
 #include "BitIoLdd3.h"
 #include "SpeedSteperEnable.h"
 #include "BitIoLdd4.h"
@@ -71,7 +71,7 @@ int main(void)
 
 	RS232Init();
 	initCommand();
-	DirectionPin_SetVal();
+	SpeedDirectionPin_SetVal();
 
 	for (;;) {
 

@@ -506,10 +506,10 @@ PE_DEBUGHALT();
       <EmptySection_DummyValue />
     </Events>
   </Bean>
-  <Bean name="DirectionPin" type="BitIO">
+  <Bean name="SpeedDirectionPin" type="BitIO">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="DirectionPin" />
+      <Component_name v="SpeedDirectionPin" />
       <Pin_for_I_O v="ADC0_SE15/TSI0_CH14/PTC1/LLWU_P6/RTC_CLKIN/I2C1_SCL/TPM0_CH0" />
       <inhrbean type="BitIO_LDD">
         <Enabled v="Y" />

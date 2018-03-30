@@ -3,7 +3,7 @@
   <Header>
     <Name>Laufkatze</Name>
     <SavedBy>mario</SavedBy>
-    <ModificationStamp>41</ModificationStamp>
+    <ModificationStamp>42</ModificationStamp>
     <Date>2018-02-16</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.2.RT7_b1550-0615</PEversion>
@@ -8491,7 +8491,7 @@
     <Repository>file:/${ProcessorExpert_loc}/Repositories/Kinetis_Repository</Repository>
     <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
     <BeanType>BitIO</BeanType>
-    <Name>DirectionPin</Name>
+    <Name>SpeedDirectionPin</Name>
     <CompNumb>25</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -8506,7 +8506,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>DirectionPin</Value>
+        <Value>SpeedDirectionPin</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>_Pin</ItemSymbol>

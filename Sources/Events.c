@@ -37,6 +37,7 @@ extern "C" {
 #include "Project_Headers\RS232.h"
 #include "Project_Headers\RecievingCommands.h"
 #include "Project_Headers\SendingCommands.h"
+#include "Project_Headers\SpeedMotor.h"
 #include "RxBuf.h"
 
 extern bool Flag_Recieved;
@@ -50,9 +51,9 @@ static uint8_t temp1;
 static uint8_t temp2;
 Command_recieve_t my_recieved_command;
 Command_send_t my_send_command;
-static long counterFrequence = 0;
+static long counterFrequenceSpeed = 0;
 static long counterStep = 0;
-static long offset = 0;
+static long offsetSpeed = 0;
 static long tempOffset = 0;
 static double newDistance = 0;
 static double oldDistance = 0;
@@ -162,54 +163,16 @@ void AS1_OnBlockSent(LDD_TUserData *UserDataPtr) {
 /* ===================================================================*/
 void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	if (Flag_Recieved == 1) {
-		my_recieved_command = Command_bufferPull();
-		if (my_recieved_command.driveSpeed != 0) {
-			SpeedSteperEnable_ClrVal();
-			offset = (0.507 / (0.0002 * my_recieved_command.driveSpeed)); //Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
-			tempOffset = offset;			// Offset new for 200 Steps = 0.507
-			if (offset < 0) {
-				offset = abs(offset);
-				DirectionPin_SetVal();
-			} else
-				DirectionPin_ClrVal();
-		} else {
-			offset = 0;
-			//SpeedSteperEnable_SetVal();
-		}
+		offsetSpeed = CalculateOffsetSpeed();
 	}
-	if (offset != 0) {
-		counterFrequence++;
-		onlyOneReset = 0;
-	} else
-		counterFrequence == 0;
-	if (my_recieved_command.controlSignal != 0 & !onlyOneReset) {
-		newDistance = 0;
-		oldDistance = 0;
-		counterStep = 0;
-		onlyOneReset = 1;
-		my_send_command.driveDistance = 0;
-		CommandSend_bufferPut(my_send_command);
-	}
-	if (counterFrequence >= offset && counterFrequence != 0) {
-		SpeedStepper_NegVal();
-		LED1_Neg();
-		if (tempOffset > 0) {
-			counterStep++;
-		} else
-			counterStep--;
-		newDistance = counterStep * 0.507 / 2;
-		if (((newDistance - oldDistance) > 10) && tempOffset > 0) {
-			my_send_command.driveDistance = (int16_t) newDistance;
-			CommandSend_bufferPut(my_send_command);
-			oldDistance = newDistance;
+	if (offsetSpeed != 0) {
+		setcounterFrequenceSpeed(1);
+		ClearOnlyOneResetSpeed();
+	} else setcounterFrequenceSpeed(0);
 
-		} else if (((oldDistance - newDistance) > 10) && tempOffset < 0) {
-			my_send_command.driveDistance = (int16_t) newDistance;
-			CommandSend_bufferPut(my_send_command);
-			oldDistance = newDistance;
-		}
-		counterFrequence = 0;
-	}
+	SetDirectionPinSpeed();
+	CheckResetSpeed();
+	StepAndSendSpeed();
 
 }
 
