@@ -54,6 +54,7 @@ Command_send_t my_send_command;
 static long counterFrequenceSpeed = 0;
 static long counterStep = 0;
 static long offsetSpeed = 0;
+static long offsetWinch = 0;
 static long tempOffset = 0;
 static double newDistance = 0;
 static double oldDistance = 0;
@@ -164,15 +165,23 @@ void AS1_OnBlockSent(LDD_TUserData *UserDataPtr) {
 void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	if (Flag_Recieved == 1) {
 		offsetSpeed = CalculateOffsetSpeed();
+		offsetWinch = CalculateOffsetWinch();
 	}
 	if (offsetSpeed != 0) {
 		setcounterFrequenceSpeed(1);
 		ClearOnlyOneResetSpeed();
 	} else setcounterFrequenceSpeed(0);
+	if(offsetWinch != 0) {
+		setcounterFrequenceWinch(1);
+		ClearOnlyOneResetWinch();
+	} else setcounterFrequenceWinch(0);
 
 	SetDirectionPinSpeed();
+	SetDirectionPinWinch();
 	CheckResetSpeed();
+	CheckResetWinch();
 	StepAndSendSpeed();
+	StepAndSendWinch();
 
 }
 

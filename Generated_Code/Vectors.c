@@ -6,7 +6,7 @@
 **     Version     : Component 01.025, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-03-30, 18:17, # CodeGen: 64
+**     Date/Time   : 2018-03-30, 18:23, # CodeGen: 65
 **     Abstract    :
 **
 **     Settings    :
@@ -69,6 +69,12 @@
   #include "BitIoLdd3.h"
   #include "SpeedSteperEnable.h"
   #include "BitIoLdd4.h"
+  #include "WinchStepper.h"
+  #include "BitIoLdd5.h"
+  #include "WinchDirectionPin.h"
+  #include "BitIoLdd6.h"
+  #include "WinchStepperEnable.h"
+  #include "BitIoLdd7.h"
   #include "Events.h"
 
 

@@ -49,6 +49,12 @@
 #include "BitIoLdd3.h"
 #include "SpeedSteperEnable.h"
 #include "BitIoLdd4.h"
+#include "WinchStepper.h"
+#include "BitIoLdd5.h"
+#include "WinchDirectionPin.h"
+#include "BitIoLdd6.h"
+#include "WinchStepperEnable.h"
+#include "BitIoLdd7.h"
 
 #ifdef __cplusplus
 extern "C" {

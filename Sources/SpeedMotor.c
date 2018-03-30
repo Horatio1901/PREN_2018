@@ -30,8 +30,8 @@ static long counterFrequenceSpeed = 0;
 static long offset = 0;
 static float tempOffset;
 static bool onlyOneResetSpeed = 0;
-enum Direction direction;
-enum ModuloValue moduloValue;
+static enum DirectionSpeed direction;
+static enum ModuloValueSpeed moduloValue;
 static double newDistance = 0;
 static double oldDistance = 0;
 static long counterStep = 0;
@@ -66,7 +66,7 @@ long CalculateOffsetSpeed() {
 	return offset;
 }
 
-enum Direction GetDirectionSpeed() {
+enum DirectionSpeed GetDirectionSpeed() {
 	return direction;
 }
 
