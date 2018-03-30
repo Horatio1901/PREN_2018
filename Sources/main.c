@@ -43,8 +43,6 @@
 #include "BitIoLdd3.h"
 #include "SpeedSteperEnable.h"
 #include "BitIoLdd4.h"
-#include "Bit1.h"
-#include "BitIoLdd5.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"

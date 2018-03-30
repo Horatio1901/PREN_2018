@@ -49,8 +49,6 @@
 #include "BitIoLdd3.h"
 #include "SpeedSteperEnable.h"
 #include "BitIoLdd4.h"
-#include "Bit1.h"
-#include "BitIoLdd5.h"
 
 #ifdef __cplusplus
 extern "C" {
