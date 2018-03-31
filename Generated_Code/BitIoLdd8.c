@@ -7,7 +7,7 @@
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-03-31, 10:39, # CodeGen: 68
+**     Date/Time   : 2018-03-31, 11:35, # CodeGen: 69
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -17,7 +17,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : BitIoLdd8
-**          Pin for I/O                                    : PTA5/USB_CLKIN/TPM0_CH2
+**          Pin for I/O                                    : PTB11/SPI1_SCK
 **          Pin signal                                     : 
 **          Direction                                      : Output
 **          Initialization                                 : 
@@ -127,19 +127,19 @@ LDD_TDeviceData* BitIoLdd8_Init(LDD_TUserData *UserDataPtr)
   DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
   DeviceDataPrv->UserDataPtr = UserDataPtr; /* Store the RTOS device structure */
   /* Configure pin as output */
-  /* GPIOA_PDDR: PDD|=0x20 */
-  GPIOA_PDDR |= GPIO_PDDR_PDD(0x20);
+  /* GPIOB_PDDR: PDD|=0x0800 */
+  GPIOB_PDDR |= GPIO_PDDR_PDD(0x0800);
   /* Set initialization value */
-  /* GPIOA_PDOR: PDO&=~0x20 */
-  GPIOA_PDOR &= (uint32_t)~(uint32_t)(GPIO_PDOR_PDO(0x20));
+  /* GPIOB_PDOR: PDO&=~0x0800 */
+  GPIOB_PDOR &= (uint32_t)~(uint32_t)(GPIO_PDOR_PDO(0x0800));
   /* Initialization of Port Control register */
-  /* PORTA_PCR5: ISF=0,MUX=1 */
-  PORTA_PCR5 = (uint32_t)((PORTA_PCR5 & (uint32_t)~(uint32_t)(
-                PORT_PCR_ISF_MASK |
-                PORT_PCR_MUX(0x06)
-               )) | (uint32_t)(
-                PORT_PCR_MUX(0x01)
-               ));
+  /* PORTB_PCR11: ISF=0,MUX=1 */
+  PORTB_PCR11 = (uint32_t)((PORTB_PCR11 & (uint32_t)~(uint32_t)(
+                 PORT_PCR_ISF_MASK |
+                 PORT_PCR_MUX(0x06)
+                )) | (uint32_t)(
+                 PORT_PCR_MUX(0x01)
+                ));
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_BitIoLdd8_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv);

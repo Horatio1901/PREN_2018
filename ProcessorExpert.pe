@@ -3,7 +3,7 @@
   <Header>
     <Name>Laufkatze</Name>
     <SavedBy>mario</SavedBy>
-    <ModificationStamp>46</ModificationStamp>
+    <ModificationStamp>47</ModificationStamp>
     <Date>2018-02-16</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.2.RT7_b1550-0615</PEversion>
@@ -11470,7 +11470,7 @@
         <ItemSymbol>_Pin</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>PTA5/USB_CLKIN/TPM0_CH2</Value>
+        <Value>PTB11/SPI1_SCK</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>
@@ -11516,7 +11516,7 @@
               <ItemSymbol>_Pin</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>PTA5/USB_CLKIN/TPM0_CH2</Value>
+              <Value>PTB11/SPI1_SCK</Value>
               <SharedPrphMode>false</SharedPrphMode>
             </ItemState>
             <ItemState>

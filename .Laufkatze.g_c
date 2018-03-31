@@ -62,7 +62,7 @@
       <XtraAge1>1280793473</XtraAge1>
       <XtraAge2>1280926119</XtraAge2>
       <XtraAge5>1280810306</XtraAge5>
-      <XtraAge18>1283413248</XtraAge18>
+      <XtraAge18>1283415171</XtraAge18>
       <XtraAge19>1283366345</XtraAge19>
       <XtraAge21>1280336697</XtraAge21>
       <XtraAge22>1283366345</XtraAge22>
@@ -391,7 +391,7 @@
     </GenFiles>
     <SignalListFile>Documentation\Laufkatze_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>46</ProjectModificationStamp>
+    <ProjectModificationStamp>47</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -2518,8 +2518,8 @@
     <GenComponentVersion>02.086</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1283413248</HeaderAge>
-    <CodeAge>1283413248</CodeAge>
+    <HeaderAge>1283415171</HeaderAge>
+    <CodeAge>1283415171</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>11</GenNumMethods>
     <GetDir>false</GetDir>
@@ -2601,8 +2601,8 @@
       <GenComponentVersion>01.033</GenComponentVersion>
       <GenDriverVersion>01.03</GenDriverVersion>
       <GenEventModule />
-      <HeaderAge>1283413248</HeaderAge>
-      <CodeAge>1283413248</CodeAge>
+      <HeaderAge>1283415171</HeaderAge>
+      <CodeAge>1283415171</CodeAge>
       <AsemblAge>-1</AsemblAge>
       <GenNumMethods>13</GenNumMethods>
       <Init>true</Init>
