@@ -5,27 +5,27 @@
  *      Author: mario
  */
 
-
-
 #include <stdio.h>
 #include "Project_Headers\RecievingCommands.h"
 #include "Project_Headers\SendingCommands.h"
 #include "Project_Headers\WinchMotor.h"
 
-Command_recieve_t my_recieved_command;
-Command_send_t my_send_command;
+//static Command_recieve_t my_recieved_command;
+//static Command_send_t my_send_command;
 static long counterFrequenceWinch = 0;
 static long offset = 0;
 static float tempOffset;
 static bool onlyOneResetWinch = 0;
+static bool resetActive = 0;
+static bool sendFlag = 0;
 static enum DirectionWinch direction;
 static enum ModuloValueWinch moduloValue;
 static double newDistance = 0;
 static double oldDistance = 0;
 static long counterStep = 0;
 
-long CalculateOffsetWinch() {
-	my_recieved_command = Command_bufferPull();
+long CalculateOffsetWinch(Command_recieve_t my_recieved_command) {
+	//my_recieved_command = Command_bufferPull();
 	if (my_recieved_command.winchSpeed != 0) {
 		WinchStepperEnable_ClrVal();
 		tempOffset = (0.507 / (0.0002 * my_recieved_command.winchSpeed)); //Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
@@ -82,17 +82,19 @@ void ClearOnlyOneResetWinch() {
 	onlyOneResetWinch = 0;
 }
 
-void CheckResetWinch() {
-	if (((my_recieved_command.controlSignal & 0x04) != 0) && !onlyOneResetWinch) {
+void CheckResetWinch(Command_recieve_t my_recieved_command) {
+	if (((my_recieved_command.controlSignal & 0x04) != 0)
+			&& !onlyOneResetWinch) {
 		newDistance = 0;
 		oldDistance = 0;
 		counterStep = 0;
 		SetOnlyOneResetWinch();
-		my_send_command.winchSpeed = 0;
-		CommandSend_bufferPut(my_send_command);
+		resetActive = 1;
+		//my_send_command.winchSpeed = 0;
+		//CommandSend_bufferPut(my_send_command);
 	}
 }
-void StepAndSendWinch() {
+int16_t StepWinch() {
 	if (counterFrequenceWinch >= offset && counterFrequenceWinch != 0) {
 		SetTickToWinch();
 		LED1_Neg();
@@ -103,16 +105,31 @@ void StepAndSendWinch() {
 		newDistance = counterStep * 0.507 / 2;
 		if (((newDistance - oldDistance) > 10)
 				&& (GetDirectionWinch() == FORWARD)) {
-			my_send_command.winchSpeed = (int16_t) newDistance;
-			CommandSend_bufferPut(my_send_command);
+			//my_send_command.winchSpeed = (int16_t) newDistance;
+			//CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
+			sendFlag = 1;
 
 		} else if (((oldDistance - newDistance) > 10)
 				&& (GetDirectionWinch() == BACKWARD)) {
-			my_send_command.winchSpeed = (int16_t) newDistance;
-			CommandSend_bufferPut(my_send_command);
+			//my_send_command.winchSpeed = (int16_t) newDistance;
+			//CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
+			sendFlag = 1;
 		}
 		counterFrequenceWinch = 0;
 	}
+	if (resetActive) {
+		resetActive = 0;
+		sendFlag = 1;
+		return 0;
+	}
+	return (int16_t) newDistance;
+}
+bool SendFlagWinch() {
+	return sendFlag;
+}
+
+void ResetSendFlagWinch() {
+	sendFlag = 0;
 }

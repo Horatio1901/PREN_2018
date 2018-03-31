@@ -49,8 +49,8 @@ static RxBuf_ElementType *temp_ElementLow;
 static RxBuf_ElementType *temp_ElementHigh;
 static uint8_t temp1;
 static uint8_t temp2;
-Command_recieve_t my_recieved_command;
-Command_send_t my_send_command;
+static Command_recieve_t my_recieved_command;
+static Command_send_t my_send_command;
 static long counterFrequenceSpeed = 0;
 static long counterStep = 0;
 static long offsetSpeed = 0;
@@ -164,8 +164,17 @@ void AS1_OnBlockSent(LDD_TUserData *UserDataPtr) {
 /* ===================================================================*/
 void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	if (Flag_Recieved == 1) {
-		offsetSpeed = CalculateOffsetSpeed();
-		offsetWinch = CalculateOffsetWinch();
+		my_recieved_command = Command_bufferPull();
+		offsetSpeed = CalculateOffsetSpeed(my_recieved_command);
+		offsetWinch = CalculateOffsetWinch(my_recieved_command);
+		if(my_recieved_command.controlSignal == 1) {
+			Magnet_SetVal();
+			//my_send_command.StatusSignal = (my_send_command.StatusSignal | 0x01);
+		}
+		else {
+			Magnet_ClrVal();
+			//my_send_command.StatusSignal = (my_send_command.StatusSignal & 0xFE);
+		}
 	}
 	if (offsetSpeed != 0) {
 		setcounterFrequenceSpeed(1);
@@ -178,10 +187,17 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 
 	SetDirectionPinSpeed();
 	SetDirectionPinWinch();
-	CheckResetSpeed();
-	CheckResetWinch();
-	StepAndSendSpeed();
-	StepAndSendWinch();
+	CheckResetSpeed(my_recieved_command);
+	CheckResetWinch(my_recieved_command);
+	my_send_command.driveDistance = StepSpeed();
+	my_send_command.winchSpeed = StepWinch();
+	if(SendFlagSpeed() || SendFlagWinch()){
+		ResetSendFlagSpeed();
+		ResetSendFlagWinch();
+		CommandSend_bufferPut(my_send_command);
+	}
+
+
 
 }
 

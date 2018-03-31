@@ -24,20 +24,22 @@
 #include "Project_Headers\SendingCommands.h"
 #include "Project_Headers\SpeedMotor.h"
 
-Command_recieve_t my_recieved_command;
-Command_send_t my_send_command;
+//Command_recieve_t my_recieved_command;
+//Command_send_t my_send_command;
 static long counterFrequenceSpeed = 0;
 static long offset = 0;
 static float tempOffset;
 static bool onlyOneResetSpeed = 0;
+static bool resetActive = 0;
+static bool sendFlag = 0;
 static enum DirectionSpeed direction;
 static enum ModuloValueSpeed moduloValue;
 static double newDistance = 0;
 static double oldDistance = 0;
 static long counterStep = 0;
 
-long CalculateOffsetSpeed() {
-	my_recieved_command = Command_bufferPull();
+long CalculateOffsetSpeed(Command_recieve_t my_recieved_command) {
+	//my_recieved_command = Command_bufferPull();
 	if (my_recieved_command.driveSpeed != 0) {
 		SpeedSteperEnable_ClrVal();
 		tempOffset = (0.507 / (0.0002 * my_recieved_command.driveSpeed)); //Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
@@ -94,17 +96,19 @@ void ClearOnlyOneResetSpeed() {
 	onlyOneResetSpeed = 0;
 }
 
-void CheckResetSpeed() {
-	if (((my_recieved_command.controlSignal & 0x02) != 0) && !onlyOneResetSpeed) {
+void CheckResetSpeed(Command_recieve_t my_recieved_command) {
+	if (((my_recieved_command.controlSignal & 0x02) != 0)
+			&& !onlyOneResetSpeed) {
 		newDistance = 0;
 		oldDistance = 0;
 		counterStep = 0;
 		SetOnlyOneResetSpeed();
-		my_send_command.driveDistance = 0;
-		CommandSend_bufferPut(my_send_command);
+		resetActive = 1;
+		//my_send_command.driveDistance = 0;
+		//CommandSend_bufferPut(my_send_command);
 	}
 }
-void StepAndSendSpeed() {
+int16_t StepSpeed() {
 	if (counterFrequenceSpeed >= offset && counterFrequenceSpeed != 0) {
 		SetTickToSpeed();
 		LED1_Neg();
@@ -115,17 +119,33 @@ void StepAndSendSpeed() {
 		newDistance = counterStep * 0.507 / 2;
 		if (((newDistance - oldDistance) > 10)
 				&& (GetDirectionSpeed() == FORWARD)) {
-			my_send_command.driveDistance = (int16_t) newDistance;
-			CommandSend_bufferPut(my_send_command);
+			//my_send_command.driveDistance = (int16_t) newDistance;
+			//CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
+			sendFlag = 1;
 
 		} else if (((oldDistance - newDistance) > 10)
 				&& (GetDirectionSpeed() == BACKWARD)) {
-			my_send_command.driveDistance = (int16_t) newDistance;
-			CommandSend_bufferPut(my_send_command);
+			//my_send_command.driveDistance = (int16_t) newDistance;
+			//CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
+			sendFlag = 1;
 		}
 		counterFrequenceSpeed = 0;
 	}
+	if (resetActive) {
+		resetActive = 0;
+		sendFlag = 1;
+		return 0;
+	}
+	return (int16_t) newDistance;
+}
+
+bool SendFlagSpeed() {
+	return sendFlag;
+}
+
+void ResetSendFlagSpeed() {
+	sendFlag = 0;
 }
 

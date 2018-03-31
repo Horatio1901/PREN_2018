@@ -55,6 +55,8 @@
 #include "BitIoLdd6.h"
 #include "WinchStepperEnable.h"
 #include "BitIoLdd7.h"
+#include "Magnet.h"
+#include "BitIoLdd8.h"
 
 #ifdef __cplusplus
 extern "C" {

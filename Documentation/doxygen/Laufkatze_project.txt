@@ -31,6 +31,7 @@
 - \subpage BitIoLdd5
 - \subpage BitIoLdd6
 - \subpage BitIoLdd7
+- \subpage BitIoLdd8
 
 */
 
