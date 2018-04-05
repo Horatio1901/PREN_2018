@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : KL25P80M48SF0RM, Rev.3, Sep 2012
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-03-30, 19:46, # CodeGen: 67
+**     Date/Time   : 2018-04-05, 09:17, # CodeGen: 70
 **     Abstract    :
 **
 **     Settings    :
@@ -265,6 +265,8 @@
 #include "BitIoLdd7.h"
 #include "Magnet.h"
 #include "BitIoLdd8.h"
+#include "Bit1.h"
+#include "BitIoLdd9.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -469,6 +471,8 @@ void PE_low_level_init(void)
   (void)BitIoLdd7_Init(NULL);
   /* ### BitIO_LDD "BitIoLdd8" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)BitIoLdd8_Init(NULL);
+  /* ### BitIO_LDD "BitIoLdd9" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)BitIoLdd9_Init(NULL);
   __EI();
 }
   /* Flash configuration field */

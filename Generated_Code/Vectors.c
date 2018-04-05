@@ -6,7 +6,7 @@
 **     Version     : Component 01.025, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-03-30, 19:46, # CodeGen: 67
+**     Date/Time   : 2018-04-05, 09:17, # CodeGen: 70
 **     Abstract    :
 **
 **     Settings    :
@@ -77,6 +77,8 @@
   #include "BitIoLdd7.h"
   #include "Magnet.h"
   #include "BitIoLdd8.h"
+  #include "Bit1.h"
+  #include "BitIoLdd9.h"
   #include "Events.h"
 
 

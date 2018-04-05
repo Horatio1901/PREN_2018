@@ -24,8 +24,6 @@
 #include "Project_Headers\SendingCommands.h"
 #include "Project_Headers\SpeedMotor.h"
 
-//Command_recieve_t my_recieved_command;
-//Command_send_t my_send_command;
 static long counterFrequenceSpeed = 0;
 static long offset = 0;
 static float tempOffset;
@@ -37,9 +35,9 @@ static enum ModuloValueSpeed moduloValue;
 static double newDistance = 0;
 static double oldDistance = 0;
 static long counterStep = 0;
+static int counterModulo = 0;
 
 long CalculateOffsetSpeed(Command_recieve_t my_recieved_command) {
-	//my_recieved_command = Command_bufferPull();
 	if (my_recieved_command.driveSpeed != 0) {
 		SpeedSteperEnable_ClrVal();
 		tempOffset = (0.507 / (0.0002 * my_recieved_command.driveSpeed)); //Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
@@ -104,12 +102,11 @@ void CheckResetSpeed(Command_recieve_t my_recieved_command) {
 		counterStep = 0;
 		SetOnlyOneResetSpeed();
 		resetActive = 1;
-		//my_send_command.driveDistance = 0;
-		//CommandSend_bufferPut(my_send_command);
 	}
 }
 int16_t StepSpeed() {
 	if (counterFrequenceSpeed >= offset && counterFrequenceSpeed != 0) {
+		counterModulo+= 10;
 		SetTickToSpeed();
 		LED1_Neg();
 		if (GetDirectionSpeed() == FORWARD) {
@@ -119,15 +116,11 @@ int16_t StepSpeed() {
 		newDistance = counterStep * 0.507 / 2;
 		if (((newDistance - oldDistance) > 10)
 				&& (GetDirectionSpeed() == FORWARD)) {
-			//my_send_command.driveDistance = (int16_t) newDistance;
-			//CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
 			sendFlag = 1;
 
 		} else if (((oldDistance - newDistance) > 10)
 				&& (GetDirectionSpeed() == BACKWARD)) {
-			//my_send_command.driveDistance = (int16_t) newDistance;
-			//CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
 			sendFlag = 1;
 		}
@@ -137,6 +130,28 @@ int16_t StepSpeed() {
 		resetActive = 0;
 		sendFlag = 1;
 		return 0;
+	}
+	switch (moduloValue) {
+	case FIFTH1:
+		if (counterModulo == 100)
+			setcounterFrequenceSpeed(1);
+		break;
+	case FIFTH2:
+		if (counterModulo == 30)
+			setcounterFrequenceSpeed(1);
+		break;
+	case FIFTH3:
+		if (counterModulo == 20)
+			setcounterFrequenceSpeed(1);
+		break;
+	case FIFTH4:
+		if (counterModulo % 7 != 0)
+			setcounterFrequenceSpeed(1);
+		break;
+	case FIFTH5:
+		if (counterModulo % 9 != 0)
+			setcounterFrequenceSpeed(1);
+		break;
 	}
 	return (int16_t) newDistance;
 }

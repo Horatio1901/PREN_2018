@@ -105,15 +105,11 @@ int16_t StepWinch() {
 		newDistance = counterStep * 0.507 / 2;
 		if (((newDistance - oldDistance) > 10)
 				&& (GetDirectionWinch() == FORWARD)) {
-			//my_send_command.winchSpeed = (int16_t) newDistance;
-			//CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
 			sendFlag = 1;
 
 		} else if (((oldDistance - newDistance) > 10)
 				&& (GetDirectionWinch() == BACKWARD)) {
-			//my_send_command.winchSpeed = (int16_t) newDistance;
-			//CommandSend_bufferPut(my_send_command);
 			oldDistance = newDistance;
 			sendFlag = 1;
 		}
