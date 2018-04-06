@@ -82,6 +82,8 @@ int main(void)
 	RS232Init();
 	initCommand();
 	SpeedDirectionPin_SetVal();
+	SpeedMotorInit();
+	WinchdMotorInit();
 
 	for (;;) {
 

@@ -10,7 +10,8 @@
 
 enum DirectionWinch {
 	FORWARD,
-	BACKWARD
+	BACKWARD,
+	STOPPED
 };
 
 enum ModuloValueWinch {

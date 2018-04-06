@@ -10,8 +10,7 @@
 #include "Project_Headers\SendingCommands.h"
 #include "Project_Headers\WinchMotor.h"
 
-//static Command_recieve_t my_recieved_command;
-//static Command_send_t my_send_command;
+
 static long counterFrequenceWinch = 0;
 static long offset = 0;
 static float tempOffset;
@@ -23,6 +22,14 @@ static enum ModuloValueWinch moduloValue;
 static double newDistance = 0;
 static double oldDistance = 0;
 static long counterStep = 0;
+static int counterModulo = 0;
+
+void WinchdMotorInit() {
+	direction = STOPPED;
+	newDistance = 0;
+	oldDistance = 0;
+	counterStep = 0;
+}
 
 long CalculateOffsetWinch(Command_recieve_t my_recieved_command) {
 	//my_recieved_command = Command_bufferPull();
@@ -50,6 +57,7 @@ long CalculateOffsetWinch(Command_recieve_t my_recieved_command) {
 
 	} else {
 		offset = 0;
+		direction = STOPPED;
 	}
 	return offset;
 }
@@ -90,13 +98,12 @@ void CheckResetWinch(Command_recieve_t my_recieved_command) {
 		counterStep = 0;
 		SetOnlyOneResetWinch();
 		resetActive = 1;
-		//my_send_command.winchSpeed = 0;
-		//CommandSend_bufferPut(my_send_command);
 	}
 }
 int16_t StepWinch() {
-	if (counterFrequenceWinch >= offset && counterFrequenceWinch != 0) {
+	if (counterFrequenceWinch >= offset && direction != STOPPED) {
 		SetTickToWinch();
+		counterModulo += 10;
 		LED1_Neg();
 		if (GetDirectionWinch() == FORWARD) {
 			counterStep++;
@@ -119,6 +126,38 @@ int16_t StepWinch() {
 		resetActive = 0;
 		sendFlag = 1;
 		return 0;
+	}
+	switch (moduloValue) {
+	case FIFTH1:
+		if (counterModulo == 100) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
+		break;
+	case FIFTH2:
+		if (counterModulo == 30) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
+		break;
+	case FIFTH3:
+		if (counterModulo == 20) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
+		break;
+	case FIFTH4:
+		if (counterModulo % 8 != 0) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
+		break;
+	case FIFTH5:
+		if (counterModulo % 9 != 0) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
+		break;
 	}
 	return (int16_t) newDistance;
 }

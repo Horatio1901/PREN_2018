@@ -37,6 +37,13 @@ static double oldDistance = 0;
 static long counterStep = 0;
 static int counterModulo = 0;
 
+void SpeedMotorInit() {
+	direction = STOPPED;
+	newDistance = 0;
+	oldDistance = 0;
+	counterStep = 0;
+}
+
 long CalculateOffsetSpeed(Command_recieve_t my_recieved_command) {
 	if (my_recieved_command.driveSpeed != 0) {
 		SpeedSteperEnable_ClrVal();
@@ -62,6 +69,7 @@ long CalculateOffsetSpeed(Command_recieve_t my_recieved_command) {
 
 	} else {
 		offset = 0;
+		direction = STOPPED;
 	}
 	return offset;
 }
@@ -105,8 +113,9 @@ void CheckResetSpeed(Command_recieve_t my_recieved_command) {
 	}
 }
 int16_t StepSpeed() {
-	if (counterFrequenceSpeed >= offset && counterFrequenceSpeed != 0) {
-		counterModulo+= 10;
+
+	if (counterFrequenceSpeed >= offset && direction != STOPPED) {
+		counterModulo += 10;
 		SetTickToSpeed();
 		LED1_Neg();
 		if (GetDirectionSpeed() == FORWARD) {
@@ -133,24 +142,34 @@ int16_t StepSpeed() {
 	}
 	switch (moduloValue) {
 	case FIFTH1:
-		if (counterModulo == 100)
-			setcounterFrequenceSpeed(1);
+		if (counterModulo == 100) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
 		break;
 	case FIFTH2:
-		if (counterModulo == 30)
-			setcounterFrequenceSpeed(1);
+		if (counterModulo == 30) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
 		break;
 	case FIFTH3:
-		if (counterModulo == 20)
-			setcounterFrequenceSpeed(1);
+		if (counterModulo == 20) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
 		break;
 	case FIFTH4:
-		if (counterModulo % 7 != 0)
-			setcounterFrequenceSpeed(1);
+		if (counterModulo % 8 != 0) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
 		break;
 	case FIFTH5:
-		if (counterModulo % 9 != 0)
-			setcounterFrequenceSpeed(1);
+		if (counterModulo % 9 != 0) {
+			setcounterFrequenceSpeed(-1);
+			counterModulo = 0;
+		}
 		break;
 	}
 	return (int16_t) newDistance;

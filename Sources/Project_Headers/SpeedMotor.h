@@ -10,7 +10,8 @@
 
 enum DirectionSpeed {
 	FORWARD,
-	BACKWARD
+	BACKWARD,
+	STOPPED
 };
 
 enum ModuloValueSpeed {
