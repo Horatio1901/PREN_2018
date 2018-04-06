@@ -169,12 +169,12 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 		offsetWinch = CalculateOffsetWinch(my_recieved_command);
 		if(my_recieved_command.controlSignal == 1) {
 			Magnet_SetVal();
-			//my_send_command.StatusSignal = (my_send_command.StatusSignal | 0x01);
 		}
 		else {
 			Magnet_ClrVal();
-			//my_send_command.StatusSignal = (my_send_command.StatusSignal & 0xFE);
 		}
+		CheckResetSpeed(my_recieved_command);
+		CheckResetWinch(my_recieved_command);
 	}
 	if (offsetSpeed != 0) {
 		setcounterFrequenceSpeed(1);
@@ -187,8 +187,6 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 
 	SetDirectionPinSpeed();
 	SetDirectionPinWinch();
-	CheckResetSpeed(my_recieved_command);
-	CheckResetWinch(my_recieved_command);
 	my_send_command.driveDistance = StepSpeed();
 	my_send_command.winchSpeed = StepWinch();
 	if(SendFlagSpeed() || SendFlagWinch()){

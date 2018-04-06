@@ -103,8 +103,7 @@ void ClearOnlyOneResetSpeed() {
 }
 
 void CheckResetSpeed(Command_recieve_t my_recieved_command) {
-	if (((my_recieved_command.controlSignal & 0x02) != 0)
-			&& !onlyOneResetSpeed) {
+	if ((my_recieved_command.controlSignal & 0x02) != 0) {
 		newDistance = 0;
 		oldDistance = 0;
 		counterStep = 0;

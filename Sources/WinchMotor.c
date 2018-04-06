@@ -91,8 +91,7 @@ void ClearOnlyOneResetWinch() {
 }
 
 void CheckResetWinch(Command_recieve_t my_recieved_command) {
-	if (((my_recieved_command.controlSignal & 0x04) != 0)
-			&& !onlyOneResetWinch) {
+	if ((my_recieved_command.controlSignal & 0x04) != 0) {
 		newDistance = 0;
 		oldDistance = 0;
 		counterStep = 0;
