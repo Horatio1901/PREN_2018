@@ -825,13 +825,13 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="Magnet" />
-      <Pin_for_I_O v="PTB11/SPI1_SCK" />
+      <Pin_for_I_O v="PTE5" />
       <inhrbean type="BitIO_LDD">
         <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd8" />
-          <Pin_for_I_O v="PTB11/SPI1_SCK" />
+          <Pin_for_I_O v="PTE5" />
           <Direction v="Output" />
           <group name="Initialization">
             <Init__direction v="Output" />
@@ -884,53 +884,22 @@ PE_DEBUGHALT();
       <EmptySection_DummyValue />
     </Events>
   </Bean>
-  <Bean name="Bit1" type="BitIO">
+  <Bean name="LoadDetection" type="BitIO_LDD">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="Bit1" />
-      <Pin_for_I_O v="PTE0/UART1_TX/RTC_CLKOUT/CMP0_OUT/I2C1_SDA" />
-      <inhrbean type="BitIO_LDD">
-        <Enabled v="Y" />
-        <Template v="BitIO_LDD" />
-        <Properties>
-          <Component_name v="BitIoLdd9" />
-          <Pin_for_I_O v="PTE0/UART1_TX/RTC_CLKOUT/CMP0_OUT/I2C1_SDA" />
-          <Direction v="Input" />
-          <group name="Initialization">
-            <Init__direction v="Input" />
-            <Init__value v="0" />
-            <Auto_initialization v="yes" />
-          </group>
-          <Safe_mode v="yes" />
-        </Properties>
-        <Methods>
-          <Init v="generate code" />
-          <Deinit v="don&amp;apos;t generate code" />
-          <GetDir v="don&amp;apos;t generate code" />
-          <SetDir v="don&amp;apos;t generate code" />
-          <SetInput v="don&amp;apos;t generate code" />
-          <SetOutput v="don&amp;apos;t generate code" />
-          <GetVal v="generate code" />
-          <PutVal v="don&amp;apos;t generate code" />
-          <ClrVal v="don&amp;apos;t generate code" />
-          <SetVal v="don&amp;apos;t generate code" />
-          <NegVal v="don&amp;apos;t generate code" />
-          <ConnectPin v="don&amp;apos;t generate code" />
-          <GetRawVal v="don&amp;apos;t generate code" />
-        </Methods>
-        <Events>
-          <EmptySection_DummyValue />
-        </Events>
-      </inhrbean>
+      <Component_name v="LoadDetection" />
+      <Pin_for_I_O v="CMP0_IN5/ADC0_SE4b/PTE29/TPM0_CH2/TPM_CLKIN0" />
       <Direction v="Input" />
       <group name="Initialization">
         <Init__direction v="Input" />
         <Init__value v="0" />
+        <Auto_initialization v="yes" />
       </group>
-      <Safe_mode v="yes" />
-      <Optimization_for v="speed" />
+      <Safe_mode v="no" />
     </Properties>
     <Methods>
+      <Init v="generate code" />
+      <Deinit v="don&amp;apos;t generate code" />
       <GetDir v="don&amp;apos;t generate code" />
       <SetDir v="don&amp;apos;t generate code" />
       <SetInput v="don&amp;apos;t generate code" />
@@ -942,6 +911,60 @@ PE_DEBUGHALT();
       <NegVal v="don&amp;apos;t generate code" />
       <ConnectPin v="don&amp;apos;t generate code" />
       <GetRawVal v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="PTE" type="Init_GPIO">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="PTE" />
+      <Device v="PTE" />
+      <group name="Settings">
+        <boolgroup name="Pin 0" v="Do not initialize" />
+        <boolgroup name="Pin 1" v="Do not initialize" />
+        <boolgroup name="Pin 2" v="Do not initialize" />
+        <boolgroup name="Pin 3" v="Do not initialize" />
+        <boolgroup name="Pin 4" v="Do not initialize" />
+        <boolgroup name="Pin 5" v="Do not initialize" />
+        <boolgroup name="Pin 20" v="Do not initialize" />
+        <boolgroup name="Pin 21" v="Do not initialize" />
+        <boolgroup name="Pin 22" v="Do not initialize" />
+        <boolgroup name="Pin 23" v="Do not initialize" />
+        <boolgroup name="Pin 24" v="Do not initialize" />
+        <boolgroup name="Pin 25" v="Do not initialize" />
+        <boolgroup name="Pin 29" v="Initialize">
+          <Pin_direction v="Input" />
+          <Output_value v="No initialization" />
+          <Pull_resistor v="Enabled" />
+        </boolgroup>
+        <boolgroup name="Pin 30" v="Do not initialize" />
+        <boolgroup name="Pin 31" v="Do not initialize" />
+      </group>
+      <group name="Pin selection/routing">
+        <boolgroup name="Pin 0" v="Disabled" />
+        <boolgroup name="Pin 1" v="Disabled" />
+        <boolgroup name="Pin 2" v="Disabled" />
+        <boolgroup name="Pin 3" v="Disabled" />
+        <boolgroup name="Pin 4" v="Disabled" />
+        <boolgroup name="Pin 5" v="Disabled" />
+        <boolgroup name="Pin 20" v="Disabled" />
+        <boolgroup name="Pin 21" v="Disabled" />
+        <boolgroup name="Pin 22" v="Disabled" />
+        <boolgroup name="Pin 23" v="Disabled" />
+        <boolgroup name="Pin 24" v="Disabled" />
+        <boolgroup name="Pin 25" v="Disabled" />
+        <boolgroup name="Pin 29" v="Disabled" />
+        <boolgroup name="Pin 30" v="Disabled" />
+        <boolgroup name="Pin 31" v="Disabled" />
+      </group>
+      <group name="Initialization">
+        <Call_Init_method v="yes" />
+      </group>
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
     </Methods>
     <Events>
       <EmptySection_DummyValue />

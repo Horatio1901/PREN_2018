@@ -7,7 +7,7 @@
 **     Version     : Component 02.086, Driver 01.00, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-03-31, 11:35, # CodeGen: 69
+**     Date/Time   : 2018-04-21, 11:09, # CodeGen: 74
 **     Abstract    :
 **         This component "BitIO" implements an one-bit input/output.
 **         It uses one bit/pin of a port.
@@ -16,7 +16,7 @@
 **         (if supported by target language and compiler).
 **     Settings    :
 **          Component name                                 : Magnet
-**          Pin for I/O                                    : PTB11/SPI1_SCK
+**          Pin for I/O                                    : PTE5
 **          Pin signal                                     : 
 **          BitIO_LDD                                      : BitIO_LDD
 **          Direction                                      : Output

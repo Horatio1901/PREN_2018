@@ -56,6 +56,8 @@ static long counterStep = 0;
 static long offsetSpeed = 0;
 static long offsetWinch = 0;
 static long tempOffset = 0;
+static bool loadDetected = 0;
+static bool loadFlag = 0;
 static double newDistance = 0;
 static double oldDistance = 0;
 static uint8_t onlyOneReset = 0;
@@ -189,10 +191,25 @@ void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	SetDirectionPinWinch();
 	my_send_command.driveDistance = StepSpeed();
 	my_send_command.winchSpeed = StepWinch();
-	if(SendFlagSpeed() || SendFlagWinch()){
+	if(LoadDetection_GetVal(NULL)) {
+		my_send_command.StatusSignal = 0x00;
+		if(loadDetected) {
+			loadDetected = FALSE;
+			loadFlag = TRUE;
+		}
+	}
+	else {
+		my_send_command.StatusSignal = 0x01;
+		if(!loadDetected) {
+			loadDetected = TRUE;
+			loadFlag = TRUE;
+		}
+	}
+	if(SendFlagSpeed() || SendFlagWinch() || loadFlag){
 		ResetSendFlagSpeed();
 		ResetSendFlagWinch();
 		CommandSend_bufferPut(my_send_command);
+		loadFlag = FALSE;
 	}
 
 

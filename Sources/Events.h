@@ -57,8 +57,8 @@
 #include "BitIoLdd7.h"
 #include "Magnet.h"
 #include "BitIoLdd8.h"
-#include "Bit1.h"
-#include "BitIoLdd9.h"
+#include "LoadDetection.h"
+#include "PTE.h"
 
 #ifdef __cplusplus
 extern "C" {

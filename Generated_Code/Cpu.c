@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : KL25P80M48SF0RM, Rev.3, Sep 2012
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2018-04-05, 09:17, # CodeGen: 70
+**     Date/Time   : 2018-04-26, 11:08, # CodeGen: 79
 **     Abstract    :
 **
 **     Settings    :
@@ -265,8 +265,8 @@
 #include "BitIoLdd7.h"
 #include "Magnet.h"
 #include "BitIoLdd8.h"
-#include "Bit1.h"
-#include "BitIoLdd9.h"
+#include "LoadDetection.h"
+#include "PTE.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -439,6 +439,12 @@ void PE_low_level_init(void)
   /* SMC_PMPROT: ??=0,??=0,AVLP=0,??=0,ALLS=0,??=0,AVLLS=0,??=0 */
   SMC_PMPROT = 0x00U;                  /* Setup Power mode protection register */
   /* Common initialization of the CPU registers */
+  /* PORTE_PCR29: ISF=0,PE=1 */
+  PORTE_PCR29 = (uint32_t)((PORTE_PCR29 & (uint32_t)~(uint32_t)(
+                 PORT_PCR_ISF_MASK
+                )) | (uint32_t)(
+                 PORT_PCR_PE_MASK
+                ));
   /* PORTA_PCR20: ISF=0,MUX=7 */
   PORTA_PCR20 = (uint32_t)((PORTA_PCR20 & (uint32_t)~(uint32_t)(
                  PORT_PCR_ISF_MASK
@@ -471,8 +477,12 @@ void PE_low_level_init(void)
   (void)BitIoLdd7_Init(NULL);
   /* ### BitIO_LDD "BitIoLdd8" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)BitIoLdd8_Init(NULL);
-  /* ### BitIO_LDD "BitIoLdd9" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)BitIoLdd9_Init(NULL);
+  /* ### BitIO_LDD "LoadDetection" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LoadDetection_Init(NULL);
+  /* ### Init_GPIO "PTE" init code ... */
+  PTE_Init();
+
+
   __EI();
 }
   /* Flash configuration field */

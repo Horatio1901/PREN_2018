@@ -121,7 +121,7 @@ int16_t StepSpeed() {
 			counterStep++;
 		} else
 			counterStep--;
-		newDistance = counterStep * 0.507 / 2;
+		newDistance = counterStep * 0.537 / 2;
 		if (((newDistance - oldDistance) > 10)
 				&& (GetDirectionSpeed() == FORWARD)) {
 			oldDistance = newDistance;

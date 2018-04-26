@@ -51,7 +51,6 @@
   <FILES>
     <GeneratedCs>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\AS1.c</PathName>
-      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Bit1.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd1.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd2.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd3.c</PathName>
@@ -60,14 +59,15 @@
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd6.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd7.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd8.c</PathName>
-      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd9.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\CS1.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Cpu.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\LED1.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\LEDpin1.c</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\LoadDetection.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\MCUC1.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Magnet.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\PE_LDD.c</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\PTE.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\RxBuf.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\SpeedDirectionPin.c</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\SpeedSteperEnable.c</PathName>
@@ -88,7 +88,6 @@
     </GeneratedCs>
     <GeneratedHs>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\AS1.h</PathName>
-      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Bit1.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd1.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd2.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd3.h</PathName>
@@ -97,7 +96,6 @@
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd6.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd7.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd8.h</PathName>
-      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\BitIoLdd9.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\CS1.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\CS1config.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Cpu.h</PathName>
@@ -105,6 +103,7 @@
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\LED1.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\LED1config.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\LEDpin1.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\LoadDetection.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\MCUC1.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\MCUC1config.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\Magnet.h</PathName>
@@ -112,6 +111,7 @@
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\PE_Error.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\PE_LDD.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\PE_Types.h</PathName>
+      <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\PTE.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\RxBuf.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\RxBufconfig.h</PathName>
       <PathName>C:\Tech_Unterlagen\PREN_Projekt\PREN_Projekt_GIT\Generated_Code\SpeedDirectionPin.h</PathName>

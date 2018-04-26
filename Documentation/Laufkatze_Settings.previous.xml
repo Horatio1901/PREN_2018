@@ -825,13 +825,13 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="Magnet" />
-      <Pin_for_I_O v="PTB11/SPI1_SCK" />
+      <Pin_for_I_O v="PTE5" />
       <inhrbean type="BitIO_LDD">
         <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd8" />
-          <Pin_for_I_O v="PTB11/SPI1_SCK" />
+          <Pin_for_I_O v="PTE5" />
           <Direction v="Output" />
           <group name="Initialization">
             <Init__direction v="Output" />
