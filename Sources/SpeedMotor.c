@@ -36,6 +36,7 @@ static double newDistance = 0;
 static double oldDistance = 0;
 static long counterStep = 0;
 static int counterModulo = 0;
+static float offsetTrack = 1.059;
 
 void SpeedMotorInit() {
 	direction = STOPPED;
@@ -121,7 +122,7 @@ int16_t StepSpeed() {
 			counterStep++;
 		} else
 			counterStep--;
-		newDistance = counterStep * 0.537 / 2;
+		newDistance = counterStep * 0.507 / 2;		// aNGEPASSETR wERT 0.537
 		if (((newDistance - oldDistance) > 10)
 				&& (GetDirectionSpeed() == FORWARD)) {
 			oldDistance = newDistance;
@@ -171,7 +172,7 @@ int16_t StepSpeed() {
 		}
 		break;
 	}
-	return (int16_t) newDistance;
+	return (int16_t) (newDistance*offsetTrack);
 }
 
 bool SendFlagSpeed() {
