@@ -194,7 +194,7 @@ PE_DEBUGHALT();
         <Parity v="None" />
         <Stop_bits v="1" />
         <Loop_mode v="Normal" />
-        <Baud_rate v="9600 baud" />
+        <Baud_rate v="115200 baud" />
         <Wakeup_condition v="Idle line wakeup" />
         <Stop_in_wait_mode v="no" />
         <Idle_line_mode v="Starts after start bit" />

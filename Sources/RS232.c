@@ -106,17 +106,5 @@ char Convert_uint16ToChar(uint16_t speed) {
 void Send_Status(char test) {
 	int i;
 	SendChar(test, &deviceData);
-	//for(;;) {
-	//if (RxBuf_NofElements()!=0) {
-	//SendString((unsigned char*)"echo: ", &deviceData);
-	// while (RxBuf_NofElements()!=0) {
-	// unsigned char ch;
-
-	//(void)RxBuf_Get(&ch);
-	//SendChar(ch, &deviceData);
-	//}
-	//SendString((unsigned char*)"\r\n", &deviceData);
-	//}
-	// }
 }
 

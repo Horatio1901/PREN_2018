@@ -22,6 +22,12 @@ enum ModuloValueSpeed {
 	FIFTH5
 };
 
+enum StatusSpeed {
+	RESET,
+	DRIVE,
+	STOPANDWAIT
+};
+
 
 
 #endif /* SOURCES_SPEEDMOTOR_H_ */

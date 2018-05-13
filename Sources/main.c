@@ -62,10 +62,28 @@
 #include "Project_Headers\RS232.h"
 #include "Project_Headers\RecievingCommands.h"
 #include "Project_Headers\SendingCommands.h"
+
+#include "Project_Headers\SpeedMotor.h"
+#include "Project_Headers\WinchMotor.h"
+
 extern bool Flag_Recieved;
 extern bool Flag_Send;
+extern int counterSpeed;
+extern int counterWinch;
+extern bool test;
 Command_recieve_t my_recieve_command;
 Command_send_t my_send_command;
+
+static long counterFrequenceSpeed = 0;
+static long counterStep = 0;
+static long offsetSpeed = 0;
+static long offsetWinch = 0;
+static long tempOffset = 0;
+static bool loadDetected = 0;
+static bool loadFlag = 0;
+static double newDistance = 0;
+static double oldDistance = 0;
+static uint8_t onlyOneReset = 0;
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -86,24 +104,78 @@ int main(void)
 	WinchdMotorInit();
 
 	for (;;) {
+		if (test) {
+			if (Flag_Recieved == 1) {
+				my_recieve_command = Command_bufferPull();
+				Flag_Recieved = 0;
+				CheckStatusSpeed(my_recieve_command);
+				CheckStatusWinch(my_recieve_command);
 
-	if (Flag_Send == 1) {
-			Flag_Send = 0;
+				offsetSpeed = CalculateOffsetSpeed(my_recieve_command);
+				offsetWinch = CalculateOffsetWinch(my_recieve_command);
+
+				if (my_recieve_command.controlSignal & 0x01 == 1) {
+					Magnet_SetVal();
+				} else {
+					Magnet_ClrVal();
+				}
+			}
+
+			if (offsetSpeed != 0) {
+				setcounterFrequenceSpeed(1);
+				ClearOnlyOneResetSpeed();
+			} else
+				setcounterFrequenceSpeed(0);
+			if (offsetWinch != 0) {
+				setcounterFrequenceWinch(1);
+				ClearOnlyOneResetWinch();
+			} else
+				setcounterFrequenceWinch(0);
+
+			SetDirectionPinSpeed();
+			SetDirectionPinWinch();
+			my_send_command.driveDistance = StepSpeed();
+			my_send_command.winchSpeed = StepWinch();
+			if (LoadDetection_GetVal(NULL)) {
+				my_send_command.StatusSignal = 0x00;
+				if (loadDetected) {
+					loadDetected = FALSE;
+					loadFlag = TRUE;
+				}
+			} else {
+				my_send_command.StatusSignal = 0x01;
+				if (!loadDetected) {
+					loadDetected = TRUE;
+					loadFlag = TRUE;
+				}
+			}
+			if (SendFlagSpeed() || SendFlagWinch() || loadFlag) {
+				ResetSendFlagSpeed();
+				ResetSendFlagWinch();
+				CommandSend_bufferPut(my_send_command);
+				loadFlag = FALSE;
+				Flag_Send = 1;
+			}
+			test = 0;
+
+		}
+		if (Flag_Send == 1) {
 			my_send_command = CommandSend_bufferPull();
 			CommandSend(my_send_command);
+			Flag_Send = 0;
 		}
-
 	}
 
 	/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
-  /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
-  #ifdef PEX_RTOS_START
-    PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
-  #endif
-  /*** End of RTOS startup code.  ***/
-  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-  for(;;){}
-  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+	/*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
+#ifdef PEX_RTOS_START
+	PEX_RTOS_START(); /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
+#endif
+	/*** End of RTOS startup code.  ***/
+	/*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+	for (;;) {
+	}
+	/*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
 /* END main */

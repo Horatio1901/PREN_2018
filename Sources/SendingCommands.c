@@ -33,18 +33,18 @@ void initCommandSend(void) {
 */
 
 void CommandSend_bufferPut(Command_send_t temp) {
-	Flag_Send = 1;
-	if (CoBuf_inSize < COMMAND_BUFFER_SIZE) {
-		Command_buffer[CoBuf_inIdx] = temp;
-		CoBuf_inSize++;
-		CoBuf_inIdx++;
-		if(CoBuf_inIdx == COMMAND_BUFFER_SIZE){
-			CoBuf_inIdx =0;
-		}
-	}
-	if (CoBuf_inSize == COMMAND_BUFFER_SIZE) {
-		CoBuf_inIdx = 0;
-	}
+	Command_buffer[0] = temp;
+//	if (CoBuf_inSize < COMMAND_BUFFER_SIZE) {
+	//	Command_buffer[CoBuf_inIdx] = temp;
+	//CoBuf_inSize++;
+		//CoBuf_inIdx++;
+		//if(CoBuf_inIdx == COMMAND_BUFFER_SIZE){
+			//CoBuf_inIdx =0;
+		//}
+	//}
+	//if (CoBuf_inSize == COMMAND_BUFFER_SIZE) {
+	//	CoBuf_inIdx = 0;
+	//}
 }
 
 /*
@@ -62,16 +62,17 @@ void CommandSend_bufferPut(Command_send_t temp) {
 
 Command_send_t CommandSend_bufferPull(void) {
 	Command_send_t temp;
-	if (CoBuf_inSize > 0) {
-		temp = Command_buffer[CoBuf_outIdx];
-		CoBuf_inSize--;
-		CoBuf_outIdx++;
-		if (CoBuf_outIdx == COMMAND_BUFFER_SIZE) {
-			CoBuf_outIdx = 0;
-		}
-	} else {
-		return;
-	}
+	//if (CoBuf_inSize > 0) {
+		//temp = Command_buffer[CoBuf_outIdx];
+		//CoBuf_inSize--;
+		//CoBuf_outIdx++;
+		//if (CoBuf_outIdx == COMMAND_BUFFER_SIZE) {
+			//CoBuf_outIdx = 0;
+		//}
+	//} else {
+		//return;
+	//}
+	temp = Command_buffer[0];
 	return temp;
 }
 

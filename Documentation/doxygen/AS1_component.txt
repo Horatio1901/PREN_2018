@@ -459,7 +459,7 @@ registers of the peripheral(s) configured by the component.
 **            Parity                                       : None
 **            Stop bits                                    : 1
 **            Loop mode                                    : Normal
-**            Baud rate                                    : 9600 baud
+**            Baud rate                                    : 115200 baud
 **            Wakeup condition                             : Idle line wakeup
 **            Stop in wait mode                            : no
 **            Idle line mode                               : Starts after start bit

@@ -40,7 +40,10 @@ extern "C" {
 #include "Project_Headers\SpeedMotor.h"
 #include "RxBuf.h"
 
-extern bool Flag_Recieved;
+bool Flag_Recieved;
+int counterSpeed = 0;
+int counterWinch = 0;
+bool test;
 extern bool Flag_Send;
 
 static short dataByteCounter = 0;
@@ -61,6 +64,10 @@ static bool loadFlag = 0;
 static double newDistance = 0;
 static double oldDistance = 0;
 static uint8_t onlyOneReset = 0;
+
+static bool startFlag = 0; //##1##
+static uint8_t startFlagCount = 0; //##1##
+
 /*
  ** ===================================================================
  **     Event       :  Cpu_OnNMIINT (module Events)
@@ -117,7 +124,9 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 			temp_Command.controlSignal = temp1; // Write Byte 5 to ControlSignal
 			Command_bufferPut(temp_Command);
 			dataByteCounter = 0;
+			Flag_Recieved = 1;
 		}
+
 	}
 	(void) AS1_ReceiveBlock(ptr->handle, (LDD_TData *) &ptr->rxChar,
 			sizeof(ptr->rxChar));
@@ -165,55 +174,7 @@ void AS1_OnBlockSent(LDD_TUserData *UserDataPtr) {
  */
 /* ===================================================================*/
 void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
-	if (Flag_Recieved == 1) {
-		my_recieved_command = Command_bufferPull();
-		offsetSpeed = CalculateOffsetSpeed(my_recieved_command);
-		offsetWinch = CalculateOffsetWinch(my_recieved_command);
-		if(my_recieved_command.controlSignal == 1) {
-			Magnet_SetVal();
-		}
-		else {
-			Magnet_ClrVal();
-		}
-		CheckResetSpeed(my_recieved_command);
-		CheckResetWinch(my_recieved_command);
-	}
-	if (offsetSpeed != 0) {
-		setcounterFrequenceSpeed(1);
-		ClearOnlyOneResetSpeed();
-	} else setcounterFrequenceSpeed(0);
-	if(offsetWinch != 0) {
-		setcounterFrequenceWinch(1);
-		ClearOnlyOneResetWinch();
-	} else setcounterFrequenceWinch(0);
-
-	SetDirectionPinSpeed();
-	SetDirectionPinWinch();
-	my_send_command.driveDistance = StepSpeed();
-	my_send_command.winchSpeed = StepWinch();
-	if(LoadDetection_GetVal(NULL)) {
-		my_send_command.StatusSignal = 0x00;
-		if(loadDetected) {
-			loadDetected = FALSE;
-			loadFlag = TRUE;
-		}
-	}
-	else {
-		my_send_command.StatusSignal = 0x01;
-		if(!loadDetected) {
-			loadDetected = TRUE;
-			loadFlag = TRUE;
-		}
-	}
-	if(SendFlagSpeed() || SendFlagWinch() || loadFlag){
-		ResetSendFlagSpeed();
-		ResetSendFlagWinch();
-		CommandSend_bufferPut(my_send_command);
-		loadFlag = FALSE;
-	}
-
-
-
+	test = 1;
 }
 
 /* END Events */
