@@ -28,6 +28,4 @@ enum StatusSpeed {
 	STOPANDWAIT
 };
 
-
-
 #endif /* SOURCES_SPEEDMOTOR_H_ */

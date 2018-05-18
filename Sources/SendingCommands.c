@@ -10,13 +10,11 @@
 static Command_send_t Command_buffer[COMMAND_BUFFER_SIZE];
 static uint8_t CoBuf_inIdx; /* input index */
 static uint8_t CoBuf_outIdx; /* output index */
-static uint8_t CoBuf_inSize; /* size data in buffer */
 bool Flag_Send = 0;
 
 void initCommandSend(void) {
 	CoBuf_inIdx = 0;
 	CoBuf_outIdx = 0;
-	CoBuf_inSize = 0;
 }
 
 /*
@@ -31,20 +29,8 @@ void initCommandSend(void) {
 **
 ** ===================================================================
 */
-
 void CommandSend_bufferPut(Command_send_t temp) {
-	Command_buffer[0] = temp;
-//	if (CoBuf_inSize < COMMAND_BUFFER_SIZE) {
-	//	Command_buffer[CoBuf_inIdx] = temp;
-	//CoBuf_inSize++;
-		//CoBuf_inIdx++;
-		//if(CoBuf_inIdx == COMMAND_BUFFER_SIZE){
-			//CoBuf_inIdx =0;
-		//}
-	//}
-	//if (CoBuf_inSize == COMMAND_BUFFER_SIZE) {
-	//	CoBuf_inIdx = 0;
-	//}
+	Command_buffer[CoBuf_inIdx] = temp;
 }
 
 /*
@@ -59,23 +45,24 @@ void CommandSend_bufferPut(Command_send_t temp) {
 **
 ** ===================================================================
 */
-
 Command_send_t CommandSend_bufferPull(void) {
 	Command_send_t temp;
-	//if (CoBuf_inSize > 0) {
-		//temp = Command_buffer[CoBuf_outIdx];
-		//CoBuf_inSize--;
-		//CoBuf_outIdx++;
-		//if (CoBuf_outIdx == COMMAND_BUFFER_SIZE) {
-			//CoBuf_outIdx = 0;
-		//}
-	//} else {
-		//return;
-	//}
-	temp = Command_buffer[0];
+	temp = Command_buffer[CoBuf_outIdx];
 	return temp;
 }
 
+/*
+** ===================================================================
+**     Method      :  CommandSend(Command_send_t temp)
+**     Description :
+**         Send the given Commando to the UART
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**
+**
+**
+** ===================================================================
+*/
 void CommandSend(Command_send_t temp){
 	Send_Status((char)(temp.driveDistance>>8));
 	Send_Status((char)temp.driveDistance);

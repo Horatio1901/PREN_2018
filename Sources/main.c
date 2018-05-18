@@ -59,21 +59,21 @@
 #include "PE_Const.h"
 #include "IO_Map.h"
 /* User includes (#include below this line is not maintained by Processor Expert) */
-#include "Project_Headers\RS232.h"
+//#include "Project_Headers\RS232.h"
 #include "Project_Headers\RecievingCommands.h"
 #include "Project_Headers\SendingCommands.h"
-
 #include "Project_Headers\SpeedMotor.h"
 #include "Project_Headers\WinchMotor.h"
+#include "Project_Headers\RS232.h"
+#include "RxBuf.h"
 
 extern bool Flag_Recieved;
 extern bool Flag_Send;
 extern int counterSpeed;
 extern int counterWinch;
-extern bool test;
+extern bool pulsSet;
 Command_recieve_t my_recieve_command;
 Command_send_t my_send_command;
-
 static long counterFrequenceSpeed = 0;
 static long counterStep = 0;
 static long offsetSpeed = 0;
@@ -104,13 +104,12 @@ int main(void)
 	WinchdMotorInit();
 
 	for (;;) {
-		if (test) {
+		if (pulsSet) {
 			if (Flag_Recieved == 1) {
 				my_recieve_command = Command_bufferPull();
 				Flag_Recieved = 0;
 				CheckStatusSpeed(my_recieve_command);
 				CheckStatusWinch(my_recieve_command);
-
 				offsetSpeed = CalculateOffsetSpeed(my_recieve_command);
 				offsetWinch = CalculateOffsetWinch(my_recieve_command);
 
@@ -156,7 +155,7 @@ int main(void)
 				loadFlag = FALSE;
 				Flag_Send = 1;
 			}
-			test = 0;
+			pulsSet = 0;
 
 		}
 		if (Flag_Send == 1) {
@@ -176,17 +175,4 @@ int main(void)
 	for (;;) {
 	}
 	/*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
-} /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
-
-/* END main */
-/*!
- ** @}
- */
-/*
- ** ###################################################################
- **
- **     This file was created by Processor Expert 10.5 [05.21]
- **     for the Freescale Kinetis series of microcontrollers.
- **
- ** ###################################################################
- */
+}

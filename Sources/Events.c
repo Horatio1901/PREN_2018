@@ -36,37 +36,19 @@ extern "C" {
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "Project_Headers\RS232.h"
 #include "Project_Headers\RecievingCommands.h"
-#include "Project_Headers\SendingCommands.h"
-#include "Project_Headers\SpeedMotor.h"
 #include "RxBuf.h"
 
+extern bool Flag_Send;
 bool Flag_Recieved;
+bool pulsSet;
 int counterSpeed = 0;
 int counterWinch = 0;
-bool test;
-extern bool Flag_Send;
-
 static short dataByteCounter = 0;
 static Command_recieve_t temp_Command;
 static RxBuf_ElementType *temp_ElementLow;
 static RxBuf_ElementType *temp_ElementHigh;
 static uint8_t temp1;
 static uint8_t temp2;
-static Command_recieve_t my_recieved_command;
-static Command_send_t my_send_command;
-static long counterFrequenceSpeed = 0;
-static long counterStep = 0;
-static long offsetSpeed = 0;
-static long offsetWinch = 0;
-static long tempOffset = 0;
-static bool loadDetected = 0;
-static bool loadFlag = 0;
-static double newDistance = 0;
-static double oldDistance = 0;
-static uint8_t onlyOneReset = 0;
-
-static bool startFlag = 0; //##1##
-static uint8_t startFlagCount = 0; //##1##
 
 /*
  ** ===================================================================
@@ -174,7 +156,7 @@ void AS1_OnBlockSent(LDD_TUserData *UserDataPtr) {
  */
 /* ===================================================================*/
 void TU2_OnCounterRestart(LDD_TUserData *UserDataPtr) {
-	test = 1;
+	pulsSet = 1;
 }
 
 /* END Events */

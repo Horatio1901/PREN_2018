@@ -30,7 +30,6 @@ void initCommand(void) {
 **
 ** ===================================================================
 */
-
 void Command_bufferPut(Command_recieve_t temp) {
 	if (CoBuf_inSize < COMMAND_BUFFER_SIZE) {
 		Command_buffer[CoBuf_inIdx] = temp;
@@ -57,7 +56,6 @@ void Command_bufferPut(Command_recieve_t temp) {
 **
 ** ===================================================================
 */
-
 Command_recieve_t Command_bufferPull(void) {
 	Command_recieve_t temp;
 	if (CoBuf_inSize > 0) {

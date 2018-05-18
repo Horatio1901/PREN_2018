@@ -54,24 +54,25 @@ long CalculateOffsetWinch(Command_recieve_t my_recieved_command) {
 		WinchStepperEnable_ClrVal();
 		if (my_recieved_command.winchSpeed > 0) {
 			direction = FORWARDWINCH;
-			tempOffset = (0.15707 / (0.0002 * my_recieved_command.winchSpeed)); //Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
-			offset = (int) tempOffset;
-			round = (float) (tempOffset - offset);
+			tempOffset = (float)(160.2/my_recieved_command.winchSpeed); //Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
+			offset = tempOffset;
+			tempOffset -= (long) tempOffset;// Offset new for 200 Steps = 0.507
 		} else if (my_recieved_command.winchSpeed < 0) {
 			direction = BACKWARDWINCH;
-			tempOffset = (0.15707 / (0.0002 * my_recieved_command.winchSpeed)); //Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
-			offset = (int) abs(tempOffset);
-			round = (float) abs(tempOffset - offset);
+			tempOffset = (float)(160.2/my_recieved_command.winchSpeed); //Offset for 200 Steps = 0.161778; for 400 Steps = 0.081139
+			offset = tempOffset;
+			tempOffset -= (long) tempOffset;// Offset new for 200 Steps = 0.507
+			offset = abs(offset);
 		}
-		if (round > 0.0 && round <= 0.2)
+		if (tempOffset > 0.0 && tempOffset <= 0.2)
 			moduloValue = FIFTH1WINCH;
-		else if (round > 0.2 && round <= 0.4)
+		else if (tempOffset > 0.2 && tempOffset <= 0.4)
 			moduloValue = FIFTH2WINCH;
-		else if (round > 0.4 && round <= 0.6)
+		else if (tempOffset > 0.4 && tempOffset <= 0.6)
 			moduloValue = FIFTH3WINCH;
-		else if (round > 0.6 && round <= 0.8)
+		else if (tempOffset > 0.6 && tempOffset <= 0.8)
 			moduloValue = FIFTH4WINCH;
-		else if (round > 0.8 && round <= 1.0)
+		else if (tempOffset > 0.8 && tempOffset <= 1.0)
 			moduloValue = FIFTH5WINCH;
 	} else if (statusWinch == RESETWINCH || statusWinch == STOPANDWAITWINCH) {
 		return 0;
